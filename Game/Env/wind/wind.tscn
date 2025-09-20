@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://076yl7mxetv0"]
+
+[ext_resource type="Script" uid="uid://vevkspviu5vk" path="res://Game/Env/wind/wind.gd" id="1_pv1kb"]
+[ext_resource type="Texture2D" uid="uid://crumimuke6tex" path="res://Game/Env/wind/Looping Wind-1.png.png" id="2_563j5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pv1kb"]
+resource_local_to_scene = true
+size = Vector2(100, 100)
+
+[node name="Wind" type="Area2D"]
+collision_layer = 0
+collision_mask = 9
+gravity_space_override = 1
+gravity_point_center = Vector2(1, 0)
+gravity_direction = Vector2(1, 0)
+script = ExtResource("1_pv1kb")
+
+[node name="Art" type="Sprite2D" parent="."]
+texture_repeat = 2
+rotation = 3.1415927
+scale = Vector2(1.02, 1)
+texture = ExtResource("2_563j5")
+region_enabled = true
+region_rect = Rect2(1534.8153, 0, 100, 100)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_pv1kb")

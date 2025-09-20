@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://5egvmd37rljr" path="res://icon.svg" id="1_p38nb"]
 [ext_resource type="PackedScene" uid="uid://bptenx8dxjug3" path="res://Game/Player/player.tscn" id="2_fudmu"]
 [ext_resource type="PackedScene" uid="uid://b74p3aywoe3kr" path="res://Game/Env/target.tscn" id="3_jpyr4"]
-[ext_resource type="PackedScene" uid="uid://076yl7mxetv0" path="res://Game/Env/wind/wind.tscn" id="4_4bpsl"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fudmu"]
 
@@ -143,6 +142,9 @@ physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_fudmu")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jpyr4"]
+size = Vector2(112, 656)
+
 [node name="RootGame" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("2_fudmu")]
@@ -196,21 +198,13 @@ rotation = -1.0471976
 position = Vector2(576, -232)
 rotation = -2.0943952
 
-[node name="Wind" parent="." instance=ExtResource("4_4bpsl")]
-position = Vector2(360, -96)
-wind_speed = 50.0
-h = 200
+[node name="Wind" type="Area2D" parent="."]
+position = Vector2(360, -312)
+collision_layer = 0
+collision_mask = 9
+gravity_space_override = 1
+gravity_point_center = Vector2(0, -1)
+gravity_direction = Vector2(0, -1)
 
-[node name="Wind2" parent="." instance=ExtResource("4_4bpsl")]
-position = Vector2(760, -48)
-rotation = 1.5707964
-gravity_point_center = Vector2(-4.371139e-08, 1)
-gravity_direction = Vector2(-4.371139e-08, 1)
-h = 200
-
-[node name="Wind3" parent="." instance=ExtResource("4_4bpsl")]
-position = Vector2(1056, -184)
-rotation = 2.3561945
-gravity_point_center = Vector2(-1, 0.99999994)
-gravity_direction = Vector2(-1, 0.99999994)
-h = 200
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wind"]
+shape = SubResource("RectangleShape2D_jpyr4")
