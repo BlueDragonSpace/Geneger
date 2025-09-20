@@ -14,21 +14,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Button" type="Button" parent="Theme"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -61.0
-offset_top = -15.5
-offset_right = 61.0
-offset_bottom = 15.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Testing testing"
-
 [node name="ArrowType" type="HBoxContainer" parent="Theme"]
 layout_mode = 1
 anchors_preset = -1
@@ -51,4 +36,26 @@ layout_mode = 2
 texture = ExtResource("2_qoywv")
 expand_mode = 3
 
-[connection signal="pressed" from="Theme/Button" to="." method="_on_button_pressed"]
+[node name="Type3" type="TextureRect" parent="Theme/ArrowType"]
+modulate = Color(0, 1, 0, 1)
+layout_mode = 2
+texture = ExtResource("2_qoywv")
+expand_mode = 3
+
+[node name="Type4" type="TextureRect" parent="Theme/ArrowType"]
+modulate = Color(0, 1, 0, 1)
+layout_mode = 2
+texture = ExtResource("2_qoywv")
+expand_mode = 3
+
+[node name="Type6" type="TextureRect" parent="Theme/ArrowType"]
+modulate = Color(0, 0.14117648, 1, 1)
+layout_mode = 2
+texture = ExtResource("2_qoywv")
+expand_mode = 3
+
+[node name="Type5" type="TextureRect" parent="Theme/ArrowType"]
+modulate = Color(0, 1, 0, 1)
+layout_mode = 2
+texture = ExtResource("2_qoywv")
+expand_mode = 3
