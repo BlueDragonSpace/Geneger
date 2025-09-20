@@ -1,0 +1,146 @@
+[gd_scene load_steps=8 format=3 uid="uid://bptenx8dxjug3"]
+
+[ext_resource type="Texture2D" uid="uid://5egvmd37rljr" path="res://icon.svg" id="1_m57qa"]
+[ext_resource type="Script" uid="uid://ch7ydpdriskk3" path="res://Game/Player/player.gd" id="1_s3asc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s3asc"]
+radius = 8.0
+height = 32.0
+
+[sub_resource type="Animation" id="Animation_s3asc"]
+resource_name = "charge"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -38.4, -0.25, 6.4, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="Animation" id="Animation_letr6"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(2.3561945, -0.05, 0, 0.05, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_vytja"]
+resource_name = "release"
+length = 0.1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2),
+"points": PackedFloat32Array(-9.536743e-07, -0.016666668, -6.4000006, 0, 0),
+"times": PackedFloat32Array(0.1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2),
+"points": PackedFloat32Array(0, -0.016666668, 0, 0, 0),
+"times": PackedFloat32Array(0.1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_segth"]
+_data = {
+&"RESET": SubResource("Animation_letr6"),
+&"charge": SubResource("Animation_s3asc"),
+&"release": SubResource("Animation_vytja")
+}
+
+[node name="Player" type="RigidBody2D" groups=["Player"]]
+lock_rotation = true
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_s3asc")
+
+[node name="Art" type="Sprite2D" parent="."]
+scale = Vector2(0.12499999, 0.24999999)
+texture = ExtResource("1_m57qa")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_s3asc")
+
+[node name="Bow" type="Node2D" parent="."]
+
+[node name="WeaponPivot" type="Node2D" parent="."]
+
+[node name="Bow" type="Node2D" parent="WeaponPivot"]
+position = Vector2(20, 0)
+scale = Vector2(0.3125, 0.062499996)
+
+[node name="Art" type="Sprite2D" parent="WeaponPivot/Bow"]
+rotation = 2.3561945
+texture = ExtResource("1_m57qa")
+
+[node name="WeaponAnimate" type="AnimationPlayer" parent="WeaponPivot/Bow"]
+root_node = NodePath("../Art")
+libraries = {
+&"": SubResource("AnimationLibrary_segth")
+}
+
+[node name="Projectiles" type="Node" parent="."]
