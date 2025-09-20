@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bptenx8dxjug3"]
+[gd_scene load_steps=20 format=3 uid="uid://bptenx8dxjug3"]
 
 [ext_resource type="Texture2D" uid="uid://5egvmd37rljr" path="res://icon.svg" id="1_m57qa"]
 [ext_resource type="Script" uid="uid://ch7ydpdriskk3" path="res://Game/Player/player.gd" id="1_s3asc"]
+[ext_resource type="Texture2D" uid="uid://d0x1yafsrllxq" path="res://Game/Player/bow/CritStar.png" id="3_letr6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s3asc"]
 radius = 8.0
@@ -42,6 +43,18 @@ tracks/2/keys = {
 "points": PackedFloat32Array(2.3561945, -0.05, 0, 0.05, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../..:critable")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_s3asc"]
 resource_name = "charge"
@@ -66,6 +79,32 @@ tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0, 0),
 "times": PackedFloat32Array(0, 1)
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../CritStar")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.73333335),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"shine", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../..:critable")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.96666664, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
 }
 
 [sub_resource type="Animation" id="Animation_vytja"]
@@ -112,6 +151,84 @@ _data = {
 &"release": SubResource("Animation_vytja")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_vytja"]
+atlas = ExtResource("3_letr6")
+region = Rect2(0, 0, 5, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_segth"]
+atlas = ExtResource("3_letr6")
+region = Rect2(5, 0, 5, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p2hw7"]
+atlas = ExtResource("3_letr6")
+region = Rect2(10, 0, 5, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ch4ko"]
+atlas = ExtResource("3_letr6")
+region = Rect2(15, 0, 5, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vh1aq"]
+atlas = ExtResource("3_letr6")
+region = Rect2(20, 0, 5, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ddeg"]
+atlas = ExtResource("3_letr6")
+region = Rect2(0, 5, 5, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_db2hk"]
+atlas = ExtResource("3_letr6")
+region = Rect2(5, 5, 5, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q0m6d"]
+atlas = ExtResource("3_letr6")
+region = Rect2(10, 5, 5, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qwver"]
+atlas = ExtResource("3_letr6")
+region = Rect2(15, 5, 5, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfw5o"]
+atlas = ExtResource("3_letr6")
+region = Rect2(20, 5, 5, 5)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wlpas"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vytja")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_segth")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p2hw7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ch4ko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vh1aq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ddeg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_db2hk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q0m6d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qwver")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfw5o")
+}],
+"loop": false,
+"name": &"shine",
+"speed": 30.0
+}]
+
 [node name="Player" type="RigidBody2D" groups=["Player"]]
 collision_mask = 2
 lock_rotation = true
@@ -126,8 +243,6 @@ texture = ExtResource("1_m57qa")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_s3asc")
-
-[node name="Bow" type="Node2D" parent="."]
 
 [node name="WeaponPivot" type="Node2D" parent="."]
 
@@ -144,5 +259,13 @@ root_node = NodePath("../Art")
 libraries = {
 &"": SubResource("AnimationLibrary_segth")
 }
+
+[node name="CritStar" type="AnimatedSprite2D" parent="WeaponPivot/Bow"]
+position = Vector2(-38.400005, 0)
+scale = Vector2(5.12, 26.100004)
+sprite_frames = SubResource("SpriteFrames_wlpas")
+animation = &"shine"
+frame = 9
+frame_progress = 1.0
 
 [node name="Projectiles" type="Node" parent="."]

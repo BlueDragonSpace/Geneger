@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ds8ha74oyja1o"]
+
+[ext_resource type="Texture2D" uid="uid://clfc6orol40tt" path="res://Game/Player/bow/pixelArrow.png" id="1_ose6h"]
+
+[node name="UIArrow" type="TextureRect"]
+texture = ExtResource("1_ose6h")
+expand_mode = 5

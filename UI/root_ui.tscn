@@ -37,19 +37,13 @@ texture = ExtResource("2_qoywv")
 expand_mode = 3
 
 [node name="Type3" type="TextureRect" parent="Theme/ArrowType"]
-modulate = Color(0, 1, 0, 1)
+modulate = Color(0.9647059, 0.10980392, 0.8392157, 1)
 layout_mode = 2
 texture = ExtResource("2_qoywv")
 expand_mode = 3
 
 [node name="Type4" type="TextureRect" parent="Theme/ArrowType"]
-modulate = Color(0, 1, 0, 1)
-layout_mode = 2
-texture = ExtResource("2_qoywv")
-expand_mode = 3
-
-[node name="Type6" type="TextureRect" parent="Theme/ArrowType"]
-modulate = Color(0, 0.14117648, 1, 1)
+modulate = Color(0, 0.1882353, 0.24313726, 1)
 layout_mode = 2
 texture = ExtResource("2_qoywv")
 expand_mode = 3
@@ -59,3 +53,31 @@ modulate = Color(0, 1, 0, 1)
 layout_mode = 2
 texture = ExtResource("2_qoywv")
 expand_mode = 3
+
+[node name="Type6" type="TextureRect" parent="Theme/ArrowType"]
+modulate = Color(0, 1, 0, 1)
+layout_mode = 2
+texture = ExtResource("2_qoywv")
+expand_mode = 3
+
+[node name="Quiver" type="VBoxContainer" parent="Theme"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025
+anchor_top = 0.025
+anchor_right = 0.025
+anchor_bottom = 0.025
+
+[node name="SpeedrunTimer" type="Label" parent="Theme"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.975
+anchor_top = 0.975
+anchor_right = 0.975
+anchor_bottom = 0.975
+offset_left = -1.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Awesome Time"

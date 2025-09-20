@@ -3,18 +3,25 @@ extends RigidBody2D
 const SPEED = 10000.0 #basically Acceration, actually
 const MAX_SPEED = 200.0
 
+var in_control: bool = true
+
 @export_category("Weapon")
 @export var kickback := 100.0 #impulse on player
 @export var arrow_impulse := 500.0 #impulse on arrow
-@export var charge_speed_mult := 1.0 #faster charging
+@export var charge_speed_mult := 1.0: #faster charging
+	set(new):
+		charge_speed_mult = new
+		$WeaponPivot/Bow/CritStar.speed_scale = new
+@export var crit_bonus := 1.25 #increased impulse for crit arrows
 
 @onready var weapon_pivot: Node2D = $WeaponPivot
 @onready var weapon_animate: AnimationPlayer = $"WeaponPivot/Bow/WeaponAnimate"
 
-var in_control: bool = true
-
 const ARROW = preload("uid://ch6dhgj3k4iki")
 var prev_arrow_collision_mask = ARROW.instantiate().collision_mask
+@export var critable = false #if released this frame, does it crit? (exported for convenince of animation)
+
+signal arrow_released
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -34,12 +41,17 @@ func _physics_process(delta: float) -> void:
 		linear_velocity.x = move_toward(linear_velocity.x, 0, abs(linear_velocity.x) * 0.25) #slow to 0
 		linear_velocity.x = clamp(linear_velocity.x,-MAX_SPEED, MAX_SPEED) #in extreme cases of speed, but still friction
 	
-	if Input.is_action_just_pressed("charge_shot"):
+	if Input.is_action_just_pressed("charge_shot") and Global.quiver > 0:
 		weapon_animate.play("charge",-1, charge_speed_mult)
 		
-	elif Input.is_action_just_released("charge_shot"):
+	elif Input.is_action_just_released("charge_shot") and Global.quiver > 0:
 		var weapon_direction = Vector2(cos(weapon_pivot.rotation), sin(weapon_pivot.rotation))
 		var base_impulse = weapon_direction * weapon_animate.current_animation_position
+		
+		if critable:
+			base_impulse *= crit_bonus
+			print('crit!')
+			
 		
 		#adds arrow as child, then adds general qualities
 		var arrow = ARROW.instantiate()
@@ -72,8 +84,7 @@ func _physics_process(delta: float) -> void:
 		if $Projectiles.get_child_count() > 5:
 			$Projectiles.remove_child($Projectiles.get_child(0))
 		
-		
-		
 		apply_impulse(-1 * kickback * base_impulse)
-		
 		weapon_animate.play("release", -1, charge_speed_mult)
+		
+		arrow_released.emit()

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bv3l8pow3wkch"
-path="res://.godot/imported/downArrow.png-b3928935c3dc113ec54e0e75afd8c42a.ctex"
+uid="uid://d0x1yafsrllxq"
+path="res://.godot/imported/CritStar.png-c0eebdb6de0bf298925ade0fa3fa4256.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Game/Player/downArrow.png"
-dest_files=["res://.godot/imported/downArrow.png-b3928935c3dc113ec54e0e75afd8c42a.ctex"]
+source_file="res://Game/Player/bow/CritStar.png"
+dest_files=["res://.godot/imported/CritStar.png-c0eebdb6de0bf298925ade0fa3fa4256.ctex"]
 
 [params]
 
