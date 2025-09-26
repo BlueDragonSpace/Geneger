@@ -6,6 +6,7 @@ func _physics_process(_delta: float) -> void:
 	
 	if get_contact_count() > 0:
 		has_hit = true
+		$CPUParticles2D.emitting = true
 	
 	if not has_hit:
 		rotation = atan2(linear_velocity.y, linear_velocity.x)

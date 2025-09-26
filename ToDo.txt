@@ -1,4 +1,28 @@
 lalalalalalalalaalalala
 
+Must:
+	Sticking to walls
+	Jump
+	Dead Screen
+Should probably:
+	Camera control for rooms
+	Target num + (UI display)
+	Moving Targets
+	Hit Switch Walls
+	Pixel Outline
+	Loading Screen change (Shiba specific)
+	Ranbow Shader (refer to notebook: HSV(n,100,100) and so on)
+Want:
+	Air Control
+	Arrow Guide
+	Multi-shot + Rapid fire lol
+	Bomb Arrow, Key Arrow?
+	Peggle Close Shot (likely gonna use Phantom Camera) + Follow Path for better...
+Probably not:
+	Puzzle?
+	Arrow / Bow Enchanting?
+	Arrow as a platform?
+	Player arrows could be charged based on position in bow, rather than time of animation
 
-Player arrows could be charged based on position in bow, rather than time of animation
+Gimmicks?:
+	Upside-down functions really well...

@@ -4,10 +4,15 @@ extends CanvasLayer
 
 @onready var arrow_type: HBoxContainer = $Theme/ArrowType
 @onready var quiver: VBoxContainer = $Theme/Quiver
+@onready var transition_animate: AnimationPlayer = $Theme/TransitionPanel/AnimationPlayer
+
+signal transitioning_out
 
 const UI_ARROW = preload("uid://ds8ha74oyja1o")
 
 var time := 0.0
+var target_max : int = 99 #gets set by root_game
+var target_current = 0
 
 func _ready() -> void:
 	#makes first arrow selected
@@ -25,6 +30,8 @@ func _ready() -> void:
 		
 	#connect("Player.arrow_released", $Theme/Quiver.get_child(0).queue_free)
 	Player.arrow_released.connect(delete_quiver_arrow)
+	
+	$Theme/TargetTracker.visible = false
 
 func delete_quiver_arrow() -> void:
 	quiver.get_child(0).queue_free()
@@ -57,3 +64,17 @@ func _process(delta: float) -> void:
 	var sec = fmod(time,60)
 	var minute = fmod(time,3600) / 60
 	$Theme/SpeedrunTimer.text = "%02d" % minute + ":" + "%02d" % sec + "." + "%02d" % msec
+	
+	if target_current >= target_max:
+		transition_in()
+
+func transition_in() -> void:
+	transition_animate.play("transition_in")
+
+func transtion_out() -> void:
+	transitioning_out.emit()
+	transition_animate.play("transition_out")
+	
+	$Theme/TargetTracker.visible = true
+	$Theme/TargetTracker/Current.text = "0"
+	$Theme/TargetTracker/Max.text = str(target_max)
