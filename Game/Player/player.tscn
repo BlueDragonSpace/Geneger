@@ -1,8 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://bptenx8dxjug3"]
+[gd_scene load_steps=25 format=3 uid="uid://bptenx8dxjug3"]
 
 [ext_resource type="Texture2D" uid="uid://5egvmd37rljr" path="res://icon.svg" id="1_m57qa"]
 [ext_resource type="Script" uid="uid://ch7ydpdriskk3" path="res://Game/Player/player.gd" id="1_s3asc"]
 [ext_resource type="Texture2D" uid="uid://d0x1yafsrllxq" path="res://Game/Player/bow/CritStar.png" id="3_letr6"]
+[ext_resource type="Texture2D" uid="uid://cidg33qkog5qp" path="res://Game/Player/bow/minecraftBow.png" id="3_vytja"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s3asc"]
 radius = 8.0
@@ -244,12 +245,13 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="Player" type="RigidBody2D" groups=["Player"]]
 collision_layer = 0
-collision_mask = 16
+collision_mask = 18
 lock_rotation = true
 contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_s3asc")
 arrow_impulse = 1000.0
+metadata/_edit_horizontal_guides_ = [-24.0]
 
 [node name="Art" type="Sprite2D" parent="."]
 scale = Vector2(0.12499999, 0.24999999)
@@ -266,7 +268,8 @@ scale = Vector2(0.3125, 0.062499996)
 
 [node name="Art" type="Sprite2D" parent="WeaponPivot/Bow"]
 rotation = 2.3561945
-texture = ExtResource("1_m57qa")
+scale = Vector2(0.33391055, 1.4687403)
+texture = ExtResource("3_vytja")
 
 [node name="WeaponAnimate" type="AnimationPlayer" parent="WeaponPivot/Bow"]
 root_node = NodePath("../Art")

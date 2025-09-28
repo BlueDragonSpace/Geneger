@@ -2,9 +2,9 @@ extends CanvasLayer
 
 @onready var Player = get_tree().get_first_node_in_group("Player")
 
-@onready var arrow_type: HBoxContainer = $Theme/ArrowType
-@onready var quiver: VBoxContainer = $Theme/Quiver
-@onready var transition_animate: AnimationPlayer = $Theme/TransitionPanel/AnimationPlayer
+@onready var arrow_type: HBoxContainer = $Theme/HUD/ArrowType
+@onready var quiver: VBoxContainer = $Theme/HUD/Quiver
+@onready var animate: AnimationPlayer = $Animate
 
 signal transitioning_out
 
@@ -12,7 +12,10 @@ const UI_ARROW = preload("uid://ds8ha74oyja1o")
 
 var time := 0.0
 var target_max : int = 99 #gets set by root_game
-var target_current = 0
+var current_targets = 0:
+	set(new):
+		current_targets = new
+		$Theme/HUD/TargetTracker/Current.text = str(current_targets)
 
 func _ready() -> void:
 	#makes first arrow selected
@@ -25,17 +28,17 @@ func _ready() -> void:
 			child.modulate.a = 0.5
 		count += 1
 	
-	for num in Global.quiver:
+	for num in Player.quiver:
 		quiver.add_child(UI_ARROW.instantiate())
 		
 	#connect("Player.arrow_released", $Theme/Quiver.get_child(0).queue_free)
 	Player.arrow_released.connect(delete_quiver_arrow)
 	
-	$Theme/TargetTracker.visible = false
+	$Theme/HUD/TargetTracker.visible = false
 
 func delete_quiver_arrow() -> void:
 	quiver.get_child(0).queue_free()
-	Global.quiver -= 1
+	#Global.quiver -= 1
 
 func _process(delta: float) -> void:
 	
@@ -54,7 +57,7 @@ func _process(delta: float) -> void:
 			Global.arrow_type_num = 0
 			arrow_type.get_child(Global.arrow_type_num).modulate.a = 1.0
 	
-	if quiver.get_child_count() < Global.quiver:
+	if quiver.get_child_count() < Player.quiver:
 		quiver.add_child(UI_ARROW.instantiate())
 	
 	# Speedrun Timer
@@ -63,18 +66,25 @@ func _process(delta: float) -> void:
 	var msec = fmod(time, 1) * 100
 	var sec = fmod(time,60)
 	var minute = fmod(time,3600) / 60
-	$Theme/SpeedrunTimer.text = "%02d" % minute + ":" + "%02d" % sec + "." + "%02d" % msec
+	$Theme/HUD/SpeedrunTimer.text = "%02d" % minute + ":" + "%02d" % sec + "." + "%02d" % msec
 	
-	if target_current >= target_max:
+	if current_targets >= target_max:
 		transition_in()
+		
+		#makes current_targets the variable equal to 0 as it transitions, but visibly, it shows the max until transition
+		var temp = current_targets
+		current_targets = 0
+		$Theme/HUD/TargetTracker/Current.text = str(temp)
+		
+		
 
 func transition_in() -> void:
-	transition_animate.play("transition_in")
+	animate.play("transition_in")
 
 func transtion_out() -> void:
 	transitioning_out.emit()
-	transition_animate.play("transition_out")
+	animate.play("transition_out")
 	
-	$Theme/TargetTracker.visible = true
-	$Theme/TargetTracker/Current.text = "0"
-	$Theme/TargetTracker/Max.text = str(target_max)
+	$Theme/HUD/TargetTracker.visible = true
+	$Theme/HUD/TargetTracker/Current.text = "0"
+	$Theme/HUD/TargetTracker/Max.text = str(target_max)

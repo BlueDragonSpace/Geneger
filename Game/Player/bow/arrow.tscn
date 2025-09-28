@@ -1,12 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://ch6dhgj3k4iki"]
+[gd_scene load_steps=8 format=3 uid="uid://ch6dhgj3k4iki"]
 
 [ext_resource type="Script" uid="uid://ca0lad8xv0mif" path="res://Game/Player/bow/arrow.gd" id="1_wmch1"]
 [ext_resource type="Texture2D" uid="uid://clfc6orol40tt" path="res://Game/Player/bow/pixelArrow.png" id="2_kdg8e"]
+[ext_resource type="Shader" uid="uid://b3rwmkrcbnwfw" path="res://UI/shaders/pixel_outline.gdshader" id="2_oa3si"]
 [ext_resource type="Texture2D" uid="uid://5egvmd37rljr" path="res://icon.svg" id="3_kdg8e"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i17d8"]
 radius = 4.0
 height = 16.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vvof3"]
+shader = ExtResource("2_oa3si")
+shader_parameter/clr = Color(0, 0, 0, 1)
+shader_parameter/type = 1
+shader_parameter/thickness = 1.0
 
 [sub_resource type="Gradient" id="Gradient_kdg8e"]
 offsets = PackedFloat32Array(0.020547945, 1)
@@ -27,6 +34,7 @@ rotation = -1.5707964
 shape = SubResource("CapsuleShape2D_i17d8")
 
 [node name="Art" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_vvof3")
 position = Vector2(8, 0)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_kdg8e")

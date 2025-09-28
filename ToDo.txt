@@ -1,9 +1,10 @@
 lalalalalalalalaalalala
 
 Must:
-	Sticking to walls
-	Jump
 	Dead Screen
+	UI update on target hit
+	New Arrow Animation!!!
+	Advance level on all targets hit
 Should probably:
 	Camera control for rooms
 	Target num + (UI display)

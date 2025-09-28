@@ -1,9 +1,11 @@
 extends RigidBody2D
 
+@onready var UI = get_tree().get_first_node_in_group("UI")
+
 const SPEED = 5000.0 #basically Acceration, actually
 const MAX_SPEED = 200.0
 
-var in_control: bool = true
+var in_control: bool = true #actually is_dead 
 
 @export var charge_move_speed_mult = 0.3
 @export var air_control = .05 #ranges from 0 to 1, less control for smaller (goes way too fast at 1)
@@ -19,12 +21,12 @@ var in_control: bool = true
 		$WeaponPivot/Bow/CritStar.speed_scale = new
 @export var crit_bonus := 1.25 #increased impulse for crit arrows
 
-
 @onready var weapon_pivot: Node2D = $WeaponPivot
 @onready var weapon_animate: AnimationPlayer = $"WeaponPivot/Bow/WeaponAnimate"
 
 const ARROW = preload("uid://ch6dhgj3k4iki")
 var prev_arrow_collision_mask = ARROW.instantiate().collision_mask
+var quiver = 10 #number of arrows you have
 @export var critable = false #if released this frame, does it crit? (exported for convenince of animation)
 
 signal arrow_released
@@ -35,6 +37,12 @@ func _process(_delta: float) -> void:
 	
 	if in_control:
 		weapon_pivot.look_at(mouse)
+	elif Input.is_action_just_pressed("advance"):
+		get_tree().reload_current_scene()
+		
+	## DEBUG
+	if Input.is_action_just_pressed("debug2"):
+		quiver += 1
 
 #func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	#var direction := Input.get_axis("move_left", "move_right") 
@@ -72,7 +80,7 @@ func _physics_process(delta: float) -> void:
 			apply_central_impulse(Vector2(0, -jump_height))
 	
 	#WEAPON STUFFF
-	if in_control and Global.quiver > 0:
+	if in_control and quiver > 0:
 		if Input.is_action_just_pressed("charge_shot"):
 			weapon_animate.play("charge",-1, charge_speed_mult)
 			
@@ -119,6 +127,7 @@ func _physics_process(delta: float) -> void:
 			apply_impulse(-1 * kickback * base_impulse)
 			weapon_animate.play("release", -1, charge_speed_mult)
 			
+			quiver -= 1
 			arrow_released.emit()
 	
 
@@ -135,6 +144,7 @@ func _on_hitbox_body_entered(_body: Node2D) -> void:
 	in_control = false
 	set_deferred("lock_rotation", false)
 	set_deferred("angular_velocity", randf_range(-1,1) * PI * 10)
+	UI.animate.play("death_in")
 
 func _on_floorbox_body_entered(_body: Node2D) -> void:
 	$Floorbox/LeftFloorParticle.emitting = true
