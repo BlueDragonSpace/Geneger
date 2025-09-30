@@ -1,0 +1,2 @@
+Set all player vars to default (check player scene and root game)
+Set UI to no Arrows

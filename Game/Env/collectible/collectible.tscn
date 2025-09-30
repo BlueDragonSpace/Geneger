@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://jwplg7gbb6re"]
+
+[ext_resource type="Script" uid="uid://bddgpkm5luflx" path="res://Game/Env/collectible/collectible.gd" id="1_c7e6r"]
+[ext_resource type="Texture2D" uid="uid://d0x1yafsrllxq" path="res://Game/Player/bow/CritStar.png" id="2_7m3pv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c7e6r"]
+size = Vector2(16, 16)
+
+[node name="Collectible" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_c7e6r")
+image = ExtResource("2_7m3pv")
+item = "Bow"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_c7e6r")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

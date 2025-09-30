@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://fp8qbuv3sgpo"]
+
+[ext_resource type="Texture2D" uid="uid://5egvmd37rljr" path="res://icon.svg" id="1_iqwq5"]
+
+[node name="Type" type="TextureRect"]
+scale = Vector2(86.293816, 2.6935487)
+texture = ExtResource("1_iqwq5")
+expand_mode = 3

@@ -1,11 +1,13 @@
 extends RigidBody2D
 
 @onready var UI = get_tree().get_first_node_in_group("UI")
+@onready var Art: AnimatedSprite2D = $Art
+@onready var Animate: AnimationPlayer = $Animate
 
 const SPEED = 5000.0 #basically Acceration, actually
 const MAX_SPEED = 200.0
 
-var in_control: bool = true #actually is_dead 
+@export var in_control: bool = true #actually is_dead
 
 @export var charge_move_speed_mult = 0.3
 @export var air_control = .05 #ranges from 0 to 1, less control for smaller (goes way too fast at 1)
@@ -23,6 +25,11 @@ var in_control: bool = true #actually is_dead
 
 @onready var weapon_pivot: Node2D = $WeaponPivot
 @onready var weapon_animate: AnimationPlayer = $"WeaponPivot/Bow/WeaponAnimate"
+@export var has_bow = false: #got the bow!
+	set(new):
+		has_bow = new
+		if has_bow:
+			$WeaponPivot.visible = true
 
 const ARROW = preload("uid://ch6dhgj3k4iki")
 var prev_arrow_collision_mask = ARROW.instantiate().collision_mask
@@ -30,6 +37,9 @@ var quiver = 10 #number of arrows you have
 @export var critable = false #if released this frame, does it crit? (exported for convenince of animation)
 
 signal arrow_released
+
+func _ready() -> void:
+	weapon_pivot.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -75,12 +85,12 @@ func _physics_process(delta: float) -> void:
 		linear_velocity.x = clamp(linear_velocity.x, -INF, 0)
 	
 	##MOVEMENT ON Y-AXIS
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("jump") and in_control:
 		if $Floorbox.has_overlapping_bodies():
 			apply_central_impulse(Vector2(0, -jump_height))
 	
 	#WEAPON STUFFF
-	if in_control and quiver > 0:
+	if in_control and quiver > 0 and has_bow:
 		if Input.is_action_just_pressed("charge_shot"):
 			weapon_animate.play("charge",-1, charge_speed_mult)
 			

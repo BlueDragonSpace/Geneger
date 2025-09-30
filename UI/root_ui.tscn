@@ -1,10 +1,16 @@
-[gd_scene load_steps=14 format=3 uid="uid://dwddtyw7h14sq"]
+[gd_scene load_steps=16 format=3 uid="uid://dwddtyw7h14sq"]
 
 [ext_resource type="Script" uid="uid://dkbyck6uumwp1" path="res://UI/root_ui.gd" id="1_vcau6"]
 [ext_resource type="Texture2D" uid="uid://5egvmd37rljr" path="res://icon.svg" id="2_qoywv"]
 [ext_resource type="Shader" uid="uid://ct11oysvt83f4" path="res://UI/shaders/pixellizer.gdshader" id="3_6ke0s"]
-[ext_resource type="Shader" uid="uid://bjdto1ihsabnr" path="res://UI/chromaticaberation.gdshader" id="3_fkrse"]
+[ext_resource type="Shader" uid="uid://bjdto1ihsabnr" path="res://UI/shaders/chromaticaberation.gdshader" id="3_fkrse"]
 [ext_resource type="Shader" uid="uid://dj7w18pp4a07k" path="res://UI/shaders/rainbow.gdshader" id="4_a8jcl"]
+[ext_resource type="Shader" uid="uid://dowjq7a32fnaw" path="res://UI/shaders/posterize.gdshader" id="6_dx8dt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fkrse"]
+shader = ExtResource("3_6ke0s")
+shader_parameter/pixel_size = 4
+shader_parameter/screen_size = Vector2(1152, 648)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dx8dt"]
 shader = ExtResource("3_fkrse")
@@ -12,13 +18,12 @@ shader_parameter/r_displacement = Vector2(3, 0)
 shader_parameter/g_displacement = Vector2(0, 0)
 shader_parameter/b_displacement = Vector2(-3, 0)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fkrse"]
-shader = ExtResource("3_6ke0s")
-shader_parameter/pixel_size = 4
-shader_parameter/screen_size = Vector2(1152, 648)
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a8jcl"]
 shader = ExtResource("4_a8jcl")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rugm2"]
+shader = ExtResource("6_dx8dt")
+shader_parameter/colors = PackedColorArray(0, 0.4509804, 0, 1, 0.65882355, 0, 0, 0, 0.7882353, 0, 0, 1, 0.79607844, 0.52156866, 0.6509804, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 
 [sub_resource type="Animation" id="Animation_qoywv"]
 length = 0.001
@@ -192,30 +197,6 @@ offset_top = 552.0
 offset_right = 516.0
 offset_bottom = 632.32
 
-[node name="Type1" type="TextureRect" parent="Theme/HUD/ArrowType"]
-modulate = Color(0, 0.14117648, 1, 1)
-layout_mode = 2
-texture = ExtResource("2_qoywv")
-expand_mode = 3
-
-[node name="Type2" type="TextureRect" parent="Theme/HUD/ArrowType"]
-modulate = Color(0, 1, 0, 1)
-layout_mode = 2
-texture = ExtResource("2_qoywv")
-expand_mode = 3
-
-[node name="Type3" type="TextureRect" parent="Theme/HUD/ArrowType"]
-modulate = Color(0.9647059, 0.10980392, 0.8392157, 1)
-layout_mode = 2
-texture = ExtResource("2_qoywv")
-expand_mode = 3
-
-[node name="Type4" type="TextureRect" parent="Theme/HUD/ArrowType"]
-modulate = Color(0, 0.1882353, 0.24313726, 1)
-layout_mode = 2
-texture = ExtResource("2_qoywv")
-expand_mode = 3
-
 [node name="Quiver" type="VBoxContainer" parent="Theme/HUD"]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 1
@@ -315,8 +296,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -1176.0
-offset_right = -1155.0
+offset_left = -1153.0
+offset_right = -1132.0
 offset_bottom = 28.232239
 grow_horizontal = 2
 grow_vertical = 2
@@ -334,7 +315,16 @@ text = "Wow such an amazing transition
 I've never seen anything like it"
 
 [node name="Shaders" type="Control" parent="Theme"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Pixellizer" type="ColorRect" parent="Theme/Shaders"]
 visible = false
+material = SubResource("ShaderMaterial_fkrse")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -361,16 +351,6 @@ position = Vector2(-7.999939, 8.000061)
 scale = Vector2(5.799999, 3.1599994)
 rect = Rect2(0, 0, 200, 200)
 
-[node name="Pixellizer" type="ColorRect" parent="Theme/Shaders"]
-visible = false
-material = SubResource("ShaderMaterial_fkrse")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
 [node name="Rainbows" type="ColorRect" parent="Theme/Shaders"]
 visible = false
 material = SubResource("ShaderMaterial_a8jcl")
@@ -385,6 +365,18 @@ grow_vertical = 2
 position = Vector2(-7.999939, 8.000061)
 scale = Vector2(5.799999, 3.1599994)
 rect = Rect2(0, 0, 200, 200)
+
+[node name="Posterize" type="ColorRect" parent="Theme/Shaders"]
+visible = false
+material = SubResource("ShaderMaterial_rugm2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="Theme/Shaders/Posterize"]
 
 [node name="Animate" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Theme/TransitionPanel")

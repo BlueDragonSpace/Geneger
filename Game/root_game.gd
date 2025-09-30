@@ -4,12 +4,13 @@ extends Node2D
 
 @export var current_lvl = 0
 
+@onready var levels: Node2D = $Levels
 # [spawn point, num targets,]
 var lvl_index := []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	for child in get_children():
+	for child in levels.get_children():
 		if child.get_class() == "Node2D":
 			
 			@warning_ignore("unused_variable")

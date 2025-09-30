@@ -2,8 +2,6 @@ lalalalalalalalaalalala
 
 Must:
 	Dead Screen
-	UI update on target hit
-	New Arrow Animation!!!
 	Advance level on all targets hit
 Should probably:
 	Camera control for rooms
@@ -18,12 +16,18 @@ Want:
 	Arrow Guide
 	Multi-shot + Rapid fire lol
 	Bomb Arrow, Key Arrow?
-	Peggle Close Shot (likely gonna use Phantom Camera) + Follow Path for better...
+	Peggle Close Shot (likely gonna use Phantom Camera + Camera to Arrow) + Follow Path for better level coverage
+	Arrow Dot Path Mid-flight
 Probably not:
 	Puzzle?
 	Arrow / Bow Enchanting?
 	Arrow as a platform?
 	Player arrows could be charged based on position in bow, rather than time of animation
+	Center hit for points (would entail a points system, and how to figure out distance from center...)
 
 Gimmicks?:
 	Upside-down functions really well...
+
+Mood...:
+	Peaceful, Celeste Golden Feather Mix
+	Bushes, Nature, Trees, Hills, Leaves

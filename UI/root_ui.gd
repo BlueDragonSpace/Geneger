@@ -9,6 +9,7 @@ extends CanvasLayer
 signal transitioning_out
 
 const UI_ARROW = preload("uid://ds8ha74oyja1o")
+const TYPE = preload("uid://fp8qbuv3sgpo") #arrow type
 
 var time := 0.0
 var target_max : int = 99 #gets set by root_game
@@ -76,8 +77,12 @@ func _process(delta: float) -> void:
 		current_targets = 0
 		$Theme/HUD/TargetTracker/Current.text = str(temp)
 		
-		
 
+func add_arrow_type() -> void:
+	var child = TYPE.instantiate()
+	#child.modulate = Color(randi_range(0,255),randi_range(0,255),randi_range(0,255))
+	arrow_type.add_child(child)
+	
 func transition_in() -> void:
 	animate.play("transition_in")
 
@@ -88,3 +93,4 @@ func transtion_out() -> void:
 	$Theme/HUD/TargetTracker.visible = true
 	$Theme/HUD/TargetTracker/Current.text = "0"
 	$Theme/HUD/TargetTracker/Max.text = str(target_max)
+	
