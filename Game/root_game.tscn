@@ -60,19 +60,24 @@ size = Vector2(128, 20)
 
 [node name="RootGame" type="Node2D"]
 script = ExtResource("1_8edvr")
+current_lvl = 9
 
 [node name="Player" parent="." instance=ExtResource("2_fudmu")]
 unique_name_in_owner = true
 position = Vector2(432, -264)
 collision_mask = 7
+has_bow = true
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+rotation = 0.05235988
+ignore_rotation = false
 zoom = Vector2(1.5, 1.5)
 limit_left = 0
 limit_bottom = 0
 limit_smoothed = true
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
+rotation_smoothing_speed = 1.0
 
 [node name="BaseFloor" type="StaticBody2D" parent="."]
 collision_layer = 2
@@ -384,12 +389,12 @@ position_smoothing_enabled = true
 rotation_smoothing_enabled = true
 
 [node name="Target4" parent="Levels/9" instance=ExtResource("3_jpyr4")]
-position = Vector2(47.99997, -15.9999695)
+position = Vector2(71.99997, 16.000034)
 rotation = 3.6651917
 linear_damp = 100.0
 
 [node name="Target5" parent="Levels/9" instance=ExtResource("3_jpyr4")]
-position = Vector2(-56.00006, -8)
+position = Vector2(-104.00006, -80)
 rotation = 2.8797934
 linear_damp = 100.0
 

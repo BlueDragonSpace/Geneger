@@ -58,25 +58,34 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("debug2"):
 		quiver += 1
 
-#func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
-	#var direction := Input.get_axis("move_left", "move_right") 
-
 func _physics_process(delta: float) -> void:
 	
-	#MOVEMENT on X-axis
+	##MOVEMENT on X-axis
 	var direction := Input.get_axis("move_left", "move_right")
 	
 	#this is exactly why I need a state machine... this is absolutely horrible
 	if direction:
-		if in_control:
-			linear_velocity.x += direction * SPEED * delta
-		else:
-			direction = 0
 		
-		if not Input.is_action_pressed("charge_shot"):
-			linear_velocity.x = clamp(linear_velocity.x,-MAX_SPEED, MAX_SPEED) #basically friction
-		else:
-			linear_velocity.x = clamp(linear_velocity.x,-MAX_SPEED * charge_move_speed_mult, MAX_SPEED * charge_move_speed_mult) #slower moving while charging arrow 
+		if get_contact_count() > 0: #on ground
+			
+			if in_control:
+				linear_velocity.x += direction * SPEED * delta
+			
+			if not Input.is_action_pressed("charge_shot"):
+				linear_velocity.x = clamp(linear_velocity.x,-MAX_SPEED, MAX_SPEED) #basically friction
+			else:
+				linear_velocity.x = clamp(linear_velocity.x,-MAX_SPEED * charge_move_speed_mult, MAX_SPEED * charge_move_speed_mult) #slower moving while charging arrow 
+		else: #in air
+			#I now have proposed velocity, it isn't added if it would make x_vel go further than limit
+			#however, allows velocity to be above limit, if it was already there
+			#this usually happens when using impulse
+			
+			var proposed_vel: float = direction * SPEED * delta
+			
+			if proposed_vel + linear_velocity.x > MAX_SPEED or proposed_vel + linear_velocity.x < -MAX_SPEED:
+				pass #the velocity is too much, going overboard
+			else:
+				linear_velocity.x += proposed_vel
 		
 	elif get_contact_count() > 0: #on ground, not moving
 		linear_velocity.x = move_toward(linear_velocity.x, 0, abs(linear_velocity.x) * 0.25) #slow to 0

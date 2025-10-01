@@ -7,7 +7,6 @@ Should probably:
 	Hit Switch Walls
 	Loading Screen change (Shiba inspecific)
 	Ranbow Shader (refer to notebook: HSV(n,100,100) and so on)
-	Air Control
 Want:
 	Arrow Guide
 	Multi-shot + Rapid fire lol

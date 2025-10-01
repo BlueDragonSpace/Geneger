@@ -192,6 +192,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="UIArrow" parent="Theme/HUD" instance=ExtResource("3_hh8yt")]
+layout_mode = 0
+
 [node name="ArrowType" type="HBoxContainer" parent="Theme/HUD"]
 layout_mode = 1
 anchors_preset = -1
@@ -209,6 +212,12 @@ layout_mode = 2
 [node name="Type2" parent="Theme/HUD/ArrowType" instance=ExtResource("2_rugm2")]
 layout_mode = 2
 
+[node name="Type3" parent="Theme/HUD/ArrowType" instance=ExtResource("2_rugm2")]
+layout_mode = 2
+
+[node name="Type4" parent="Theme/HUD/ArrowType" instance=ExtResource("2_rugm2")]
+layout_mode = 2
+
 [node name="Quiver" type="VBoxContainer" parent="Theme/HUD"]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 1
@@ -219,12 +228,6 @@ anchor_right = 0.025
 anchor_bottom = 0.025
 offset_right = 100.0
 offset_bottom = 40.0
-
-[node name="UIArrow" parent="Theme/HUD/Quiver" instance=ExtResource("3_hh8yt")]
-layout_mode = 2
-
-[node name="UIArrow2" parent="Theme/HUD/Quiver" instance=ExtResource("3_hh8yt")]
-layout_mode = 2
 
 [node name="SpeedrunTimer" type="Label" parent="Theme/HUD"]
 layout_mode = 1
