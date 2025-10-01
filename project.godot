@@ -15,6 +15,9 @@ config/description="Physics-based Bow Game!"
 config/version="1.0.0"
 run/main_scene="uid://d2uuwd3fl1c72"
 config/features=PackedStringArray("4.5", "GL Compatibility")
+boot_splash/bg_color=Color(0.24673039, 5.7865196e-05, 0.25970915, 1)
+boot_splash/use_filter=false
+boot_splash/image="uid://cidg33qkog5qp"
 config/icon="uid://cidg33qkog5qp"
 
 [autoload]

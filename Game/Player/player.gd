@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+#region Variables, Signals, a whole bunch of stuff
+
 @onready var UI = get_tree().get_first_node_in_group("UI")
 @onready var Art: AnimatedSprite2D = $Art
 @onready var Animate: AnimationPlayer = $Animate
@@ -7,7 +9,8 @@ extends RigidBody2D
 const SPEED = 5000.0 #basically Acceration, actually
 const MAX_SPEED = 200.0
 
-@export var in_control: bool = true #actually is_dead
+@export var in_control: bool = true #can the player control stuff with the player
+var is_dead: bool = false #is the player dead 
 
 @export var charge_move_speed_mult = 0.3
 @export var air_control = .05 #ranges from 0 to 1, less control for smaller (goes way too fast at 1)
@@ -37,6 +40,7 @@ var quiver = 10 #number of arrows you have
 @export var critable = false #if released this frame, does it crit? (exported for convenince of animation)
 
 signal arrow_released
+#endregion
 
 func _ready() -> void:
 	weapon_pivot.visible = false
@@ -47,7 +51,7 @@ func _process(_delta: float) -> void:
 	
 	if in_control:
 		weapon_pivot.look_at(mouse)
-	elif Input.is_action_just_pressed("advance"):
+	elif Input.is_action_just_pressed("advance") and is_dead:
 		get_tree().reload_current_scene()
 		
 	## DEBUG
@@ -139,7 +143,6 @@ func _physics_process(delta: float) -> void:
 			
 			quiver -= 1
 			arrow_released.emit()
-	
 
 func teleport(new_position: Vector2) -> void:
 	
@@ -151,10 +154,12 @@ func teleport(new_position: Vector2) -> void:
 	)
 
 func _on_hitbox_body_entered(_body: Node2D) -> void:
+	is_dead = true
 	in_control = false
 	set_deferred("lock_rotation", false)
 	set_deferred("angular_velocity", randf_range(-1,1) * PI * 10)
-	UI.animate.play("death_in")
+	##HHEHEEHEHEHEHEHEHEHEHEHEHEH
+	UI.animate.play("death_in") ##HERHEREHEHREHR
 
 func _on_floorbox_body_entered(_body: Node2D) -> void:
 	$Floorbox/LeftFloorParticle.emitting = true

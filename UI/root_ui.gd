@@ -36,6 +36,7 @@ func _ready() -> void:
 	Player.arrow_released.connect(delete_quiver_arrow)
 	
 	$Theme/HUD/TargetTracker.visible = false
+	$Theme/Death.visible = true
 
 func delete_quiver_arrow() -> void:
 	quiver.get_child(0).queue_free()

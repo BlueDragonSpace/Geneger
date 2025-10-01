@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bif7dfxiod6vm"]
+
+[ext_resource type="Texture2D" uid="uid://5egvmd37rljr" path="res://icon.svg" id="1_rojac"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8edvr"]
+size = Vector2(128, 20)
+
+[node name="Killzone" type="StaticBody2D"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(4.2915344e-06, 0)
+scale = Vector2(0.99999994, 0.12499999)
+texture = ExtResource("1_rojac")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8edvr")

@@ -1,23 +1,20 @@
 lalalalalalalalaalalala
 
 Must:
-	Dead Screen
-	Advance level on all targets hit
+	Art and Music... (gonna need making, and a lot of set-up)
 Should probably:
 	Camera control for rooms
-	Target num + (UI display)
-	Moving Targets
 	Hit Switch Walls
-	Pixel Outline
-	Loading Screen change (Shiba specific)
+	Loading Screen change (Shiba inspecific)
 	Ranbow Shader (refer to notebook: HSV(n,100,100) and so on)
-Want:
 	Air Control
+Want:
 	Arrow Guide
 	Multi-shot + Rapid fire lol
 	Bomb Arrow, Key Arrow?
 	Peggle Close Shot (likely gonna use Phantom Camera + Camera to Arrow) + Follow Path for better level coverage
 	Arrow Dot Path Mid-flight
+	Boss fight scene!!! (Blowing wind, blowing targets to rejuvenate platforms, Hit eyes or something, cool music...)
 Probably not:
 	Puzzle?
 	Arrow / Bow Enchanting?

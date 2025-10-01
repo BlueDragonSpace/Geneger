@@ -1,13 +1,14 @@
-[gd_scene load_steps=17 format=4 uid="uid://id3v6canaqmk"]
+[gd_scene load_steps=18 format=4 uid="uid://id3v6canaqmk"]
 
 [ext_resource type="Script" uid="uid://bic8ps4anxoj6" path="res://Game/root_game.gd" id="1_8edvr"]
 [ext_resource type="Texture2D" uid="uid://5egvmd37rljr" path="res://icon.svg" id="1_p38nb"]
 [ext_resource type="PackedScene" uid="uid://bptenx8dxjug3" path="res://Game/Player/player.tscn" id="2_fudmu"]
-[ext_resource type="PackedScene" uid="uid://b74p3aywoe3kr" path="res://Game/Env/target.tscn" id="3_jpyr4"]
+[ext_resource type="PackedScene" uid="uid://b74p3aywoe3kr" path="res://Game/Env/target/target.tscn" id="3_jpyr4"]
 [ext_resource type="PackedScene" uid="uid://076yl7mxetv0" path="res://Game/Env/wind/wind.tscn" id="4_4bpsl"]
 [ext_resource type="TileSet" uid="uid://c0bsqdhbog21c" path="res://Game/Env/FillerTilemap.tres" id="6_bhcbk"]
+[ext_resource type="PackedScene" uid="uid://bif7dfxiod6vm" path="res://Game/Env/killzone/killzone.tscn" id="6_cwq06"]
 [ext_resource type="Texture2D" uid="uid://clfc6orol40tt" path="res://Game/Player/bow/pixelArrow.png" id="7_bhcbk"]
-[ext_resource type="PackedScene" uid="uid://i63netiq1kep" path="res://Game/Env/bouncy.tscn" id="7_kkmom"]
+[ext_resource type="PackedScene" uid="uid://i63netiq1kep" path="res://Game/Env/bouncy/bouncy.tscn" id="7_kkmom"]
 [ext_resource type="PackedScene" uid="uid://jwplg7gbb6re" path="res://Game/Env/collectible/collectible.tscn" id="8_878my"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fudmu"]
@@ -48,14 +49,14 @@ _data = {
 &"move": SubResource("Animation_8edvr")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8edvr"]
-size = Vector2(128, 20)
-
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4bpsl"]
 bounce = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j4r2b"]
 size = Vector2(296, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8edvr"]
+size = Vector2(128, 20)
 
 [node name="RootGame" type="Node2D"]
 script = ExtResource("1_8edvr")
@@ -102,8 +103,8 @@ tile_set = ExtResource("6_bhcbk")
 [node name="Wind" parent="Levels/0" instance=ExtResource("4_4bpsl")]
 position = Vector2(376.00003, -312.00003)
 rotation = 1.0471976
-gravity_point_center = Vector2(-0.99707043, 1.7303593)
-gravity_direction = Vector2(-0.99707043, 1.7303593)
+gravity_point_center = Vector2(-0.9992676, 1.731628)
+gravity_direction = Vector2(-0.9992676, 1.731628)
 h = 200
 
 [node name="Label" type="Label" parent="Levels/0"]
@@ -114,6 +115,9 @@ offset_bottom = -189.0
 text = "This is like a hub or something...
 Idk yet lol
 Skip to the next level with \"4\""
+
+[node name="Killzone" parent="Levels/0" instance=ExtResource("6_cwq06")]
+position = Vector2(224, -80)
 
 [node name="1" type="Node2D" parent="Levels"]
 position = Vector2(1696, -224)
@@ -461,19 +465,8 @@ text = "haha you
 can't reach
 these"
 
-[node name="KillZone" type="StaticBody2D" parent="Levels/10"]
-position = Vector2(-160, 72)
-collision_layer = 16
-collision_mask = 0
-
-[node name="Icon" type="Sprite2D" parent="Levels/10/KillZone"]
-position = Vector2(8.000004, 0)
-scale = Vector2(0.99999994, 0.12499999)
-texture = ExtResource("1_p38nb")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Levels/10/KillZone"]
-position = Vector2(8, 0)
-shape = SubResource("RectangleShape2D_8edvr")
+[node name="Killzone" parent="Levels/10" instance=ExtResource("6_cwq06")]
+position = Vector2(-144, 72)
 
 [node name="11" type="Node2D" parent="Levels"]
 position = Vector2(7960, -3432)
