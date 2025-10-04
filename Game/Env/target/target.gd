@@ -13,8 +13,12 @@ func _on_body_entered(body: Node2D) -> void:
 		is_hit = true
 		var child = NOTIF.instantiate()
 		add_child(child)
-		$Sound.play()
 		
-		UI.current_targets += 1
+		get_hit()
 	
 	#When Target hit, disable self, change art,  add one to targets hit
+
+#this function is changed in the Switch
+func get_hit() -> void: #gets set by extentions of Target, like the Hit-switch
+	UI.current_targets += 1
+	$Sound.play()

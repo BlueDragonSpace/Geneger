@@ -24,6 +24,10 @@ config/icon="uid://cidg33qkog5qp"
 
 Global="*res://global.gd"
 
+[display]
+
+mouse_cursor/custom_image="uid://clfc6orol40tt"
+
 [editor]
 
 movie_writer/video_quality=0.5
@@ -41,6 +45,7 @@ enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
 
 Player="Global Player"
 UI="Global UI class"
+Game="Global Game Group"
 
 [input]
 

@@ -1,43 +1,34 @@
 lalalalalalalalaalalala
 
+Bugs:
+	Level 9 Impulsed leftward
+
 Must:
-	Pause
+	Art and Music..
 	
-	Art and Music... (gonna need making, and a lot of set-up)
-	
-	wav files don't loop but mp3s do
-	Reimport: 
-		Arrow Going (loop by mp3)
-		Wind (loop by mp3)
-	Redo:
-		Critical (high pitch)
-		Jump (high pitch)
-	Add:
-		Failure to Jump (puff of air) (show Celeste)
-		Pause
-		Out of Arrows
-		Impulse
-	Unimplemented on my end:
-		Start
-		
 Should probably:
 	Camera control for rooms
 	Hit Switch Walls
 	Loading Screen change (Shiba inspecific)
 	Ranbow Shader (refer to notebook: HSV(n,100,100) and so on)
+	
 Want:
-	Arrow Guide
+	Arrow Guide: Arrow Dot Path Midflight (Ballistics Plugin?)
 	Multi-shot + Rapid fire lol
 	Bomb Arrow, Key Arrow?
 	Peggle Close Shot (likely gonna use Phantom Camera + Camera to Arrow) + Follow Path for better level coverage
-	Arrow Dot Path Mid-flight
 	Boss fight scene!!! (Blowing wind, blowing targets to rejuvenate platforms, Hit eyes or something, cool music...)
+	Rope
+	Breakable Object
+	
 Probably not:
+	Collectible increases your draw speed, jump height...
 	Puzzle?
 	Arrow / Bow Enchanting?
 	Arrow as a platform?
 	Player arrows could be charged based on position in bow, rather than time of animation
 	Center hit for points (would entail a points system, and how to figure out distance from center...)
+	
 
 Gimmicks?:
 	Upside-down functions really well...
@@ -45,3 +36,24 @@ Gimmicks?:
 Mood...:
 	Peaceful, Celeste Golden Feather Mix
 	Bushes, Nature, Trees, Hills, Leaves
+
+Music:
+	wav files don't loop but mp3s do
+	Reimport: 
+		Arrow Going (loop by mp3)
+		Wind (loop by mp3)
+	Redo:
+		Critical (high pitch)
+		Jump (high pitch)
+		Target (kinda just feels off)
+	Add:
+		Failure to Jump (puff of air) (show Celeste)
+		Pause
+		Out of Arrows
+		Impulse
+		Light Passage? (like an environment feature that opens up when you hit all targets and it's made of light)
+		Next Lvl.
+		Collecting Animation
+	Unimplemented on my end:
+		Start
+		

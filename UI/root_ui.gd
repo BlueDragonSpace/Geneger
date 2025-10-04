@@ -107,3 +107,6 @@ func transtion_out() -> void:
 	$Theme/HUD/TargetTracker/Current.text = "0"
 	$Theme/HUD/TargetTracker/Max.text = str(target_max)
 	
+
+func _on_quit_pressed() -> void:
+	get_tree().quit()

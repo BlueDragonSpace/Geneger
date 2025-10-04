@@ -8,6 +8,12 @@ extends Node2D
 # [spawn point, num targets,]
 var lvl_index := []
 
+signal envSwitched
+var envSwitch = false: #is the environmental switch on or off
+	set(new):
+		envSwitch = new
+		envSwitched.emit()
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for child in levels.get_children():

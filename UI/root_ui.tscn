@@ -316,7 +316,6 @@ offset_bottom = 40.0
 
 [node name="Pause" type="ColorRect" parent="Theme"]
 process_mode = 2
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -351,6 +350,20 @@ layout_mode = 2
 text = "Press P again to unpause"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Quit" type="Button" parent="Theme/Pause"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -24.5
+offset_top = -31.0
+offset_right = 24.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Quit?"
 
 [node name="TransitionPanel" type="TextureRect" parent="Theme"]
 modulate = Color(0.94509804, 0, 0.94509804, 0.7019608)
@@ -441,3 +454,5 @@ pitch_scale = 0.71
 
 [node name="MenuDissipate" type="AudioStreamPlayer" parent="Sound"]
 stream = ExtResource("10_byxa4")
+
+[connection signal="pressed" from="Theme/Pause/Quit" to="." method="_on_quit_pressed"]
