@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://id3v6canaqmk"]
+[gd_scene load_steps=21 format=4 uid="uid://id3v6canaqmk"]
 
 [ext_resource type="Script" uid="uid://bic8ps4anxoj6" path="res://Game/root_game.gd" id="1_8edvr"]
 [ext_resource type="Texture2D" uid="uid://5egvmd37rljr" path="res://icon.svg" id="1_p38nb"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://clfc6orol40tt" path="res://Game/Player/bow/arrow/pixelArrow.png" id="7_bhcbk"]
 [ext_resource type="PackedScene" uid="uid://i63netiq1kep" path="res://Game/Env/bouncy/bouncy.tscn" id="7_kkmom"]
 [ext_resource type="PackedScene" uid="uid://jwplg7gbb6re" path="res://Game/Env/collectible/collectible.tscn" id="8_878my"]
+[ext_resource type="PackedScene" uid="uid://qce2wbats8ba" path="res://Game/Env/switch/switch_env/switch_env.tscn" id="8_b672w"]
+[ext_resource type="PackedScene" uid="uid://d1s3txry2rr13" path="res://Game/Env/rope/rope.tscn" id="9_6vadt"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fudmu"]
 
@@ -106,15 +108,34 @@ tile_set = ExtResource("6_bhcbk")
 [node name="Wind" parent="Levels/0" instance=ExtResource("4_4bpsl")]
 position = Vector2(328, -336)
 rotation = 1.0471976
-gravity_point_center = Vector2(-0.99999726, 1.7320492)
-gravity_direction = Vector2(-0.99999726, 1.7320492)
+gravity_point_center = Vector2(-1, 1.7320507)
+gravity_direction = Vector2(-1, 1.7320507)
 h = 200
 
 [node name="Killzone" parent="Levels/0" instance=ExtResource("6_cwq06")]
 position = Vector2(160, -184)
 
 [node name="Switch" parent="Levels/0" instance=ExtResource("7_516lo")]
-position = Vector2(712, -1552)
+position = Vector2(1104, -1576)
+
+[node name="SwitchEnv" parent="Levels/0" instance=ExtResource("8_b672w")]
+modulate = Color(0, 1, 0, 0.5)
+position = Vector2(920, -1464)
+tile_map_data = PackedByteArray("AAADAAAAAAABAAMAAAADAAEAAAABAAMAAAAEAAAAAAABAAMAAAAEAAEAAAABAAMAAAAFAAAAAAABAAMAAAAFAAEAAAABAAMAAAAGAAAAAAABAAMAAAAGAAEAAAABAAMAAAAHAAAAAAABAAMAAAAHAAEAAAABAAMAAAAIAAAAAAABAAMAAAAIAAEAAAABAAMAAAAJAAAAAAABAAMAAAAJAAEAAAABAAMAAAAKAAAAAAABAAMAAAAKAAEAAAABAAMAAAALAAAAAAABAAMAAAALAAEAAAABAAMAAAAMAAAAAAABAAMAAAAMAAEAAAABAAMAAAD//wAAAAABAAMAAAD//wEAAAABAAMAAAAAAAAAAAABAAMAAAAAAAEAAAABAAMAAAABAAAAAAABAAMAAAABAAEAAAABAAMAAAACAAAAAAABAAMAAAACAAEAAAABAAMAAAAEAP//AAABAAMAAAAFAP//AAABAAMAAAAGAP//AAABAAMAAAAHAP//AAABAAMAAAAIAP//AAABAAMAAAAJAP//AAABAAMAAAAKAP//AAABAAMAAAALAP//AAABAAMAAAAMAP//AAABAAMAAAA=")
+tile_set = ExtResource("6_bhcbk")
+
+[node name="SwitchEnv2" parent="Levels/0" instance=ExtResource("8_b672w")]
+modulate = Color(1, 0, 0, 0.5)
+position = Vector2(1144, -1496)
+tile_map_data = PackedByteArray("AAADAAAAAAABAAMAAAADAAEAAAABAAMAAAAEAAAAAAABAAMAAAAEAAEAAAABAAMAAAAFAAAAAAABAAMAAAAFAAEAAAABAAMAAAAGAAAAAAABAAMAAAAGAAEAAAABAAMAAAAHAAAAAAABAAMAAAAHAAEAAAABAAMAAAAIAAAAAAABAAMAAAAIAAEAAAABAAMAAAAJAAAAAAABAAMAAAAJAAEAAAABAAMAAAAKAAAAAAABAAMAAAAKAAEAAAABAAMAAAALAAAAAAABAAMAAAALAAEAAAABAAMAAAAMAAAAAAABAAMAAAAMAAEAAAABAAMAAAD//wAAAAABAAMAAAD//wEAAAABAAMAAAAAAAAAAAABAAMAAAAAAAEAAAABAAMAAAABAAAAAAABAAMAAAABAAEAAAABAAMAAAACAAAAAAABAAMAAAACAAEAAAABAAMAAAAEAP//AAABAAMAAAAFAP//AAABAAMAAAAGAP//AAABAAMAAAAHAP//AAABAAMAAAAIAP//AAABAAMAAAAJAP//AAABAAMAAAAKAP//AAABAAMAAAALAP//AAABAAMAAAAMAP//AAABAAMAAAA=")
+tile_set = ExtResource("6_bhcbk")
+inverse = false
+
+[node name="Rope" parent="Levels/0" instance=ExtResource("9_6vadt")]
+position = Vector2(712, -1560)
+
+[node name="Rope2" parent="Levels/0" instance=ExtResource("9_6vadt")]
+position = Vector2(760, -1544)
 
 [node name="1" type="Node2D" parent="Levels"]
 position = Vector2(1696, -224)

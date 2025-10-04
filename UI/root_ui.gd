@@ -11,7 +11,6 @@ signal transitioning_out
 const UI_ARROW = preload("uid://ds8ha74oyja1o")
 const TYPE = preload("uid://fp8qbuv3sgpo") #arrow type
 
-var time := 0.0
 var target_max : int = 99 #gets set by root_game
 var current_targets = 0:
 	set(new):
@@ -43,7 +42,7 @@ func delete_quiver_arrow() -> void:
 	quiver.get_child(0).queue_free()
 	#Global.quiver -= 1
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	
 	if Input.is_action_just_pressed("switch_arrow"):
 		for num in range (0,arrow_type.get_child_count()):
@@ -75,11 +74,10 @@ func _process(delta: float) -> void:
 			$Theme/Pause.visible = true
 	
 	# Speedrun Timer
-	time += delta
 	
-	var msec = fmod(time, 1) * 100
-	var sec = fmod(time,60)
-	var minute = fmod(time,3600) / 60
+	var msec = fmod(Global.time, 1) * 100
+	var sec = fmod(Global.time,60)
+	var minute = fmod(Global.time,3600) / 60
 	$Theme/HUD/SpeedrunTimer.text = "%02d" % minute + ":" + "%02d" % sec + "." + "%02d" % msec
 	
 	if current_targets >= target_max: #transition to next level
@@ -106,7 +104,6 @@ func transtion_out() -> void:
 	$Theme/HUD/TargetTracker.visible = true
 	$Theme/HUD/TargetTracker/Current.text = "0"
 	$Theme/HUD/TargetTracker/Max.text = str(target_max)
-	
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
