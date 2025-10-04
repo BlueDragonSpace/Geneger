@@ -1,7 +1,25 @@
 lalalalalalalalaalalala
 
 Must:
+	Pause
+	
 	Art and Music... (gonna need making, and a lot of set-up)
+	
+	wav files don't loop but mp3s do
+	Reimport: 
+		Arrow Going (loop by mp3)
+		Wind (loop by mp3)
+	Redo:
+		Critical (high pitch)
+		Jump (high pitch)
+	Add:
+		Failure to Jump (puff of air) (show Celeste)
+		Pause
+		Out of Arrows
+		Impulse
+	Unimplemented on my end:
+		Start
+		
 Should probably:
 	Camera control for rooms
 	Hit Switch Walls

@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://076yl7mxetv0" path="res://Game/Env/wind/wind.tscn" id="4_4bpsl"]
 [ext_resource type="TileSet" uid="uid://c0bsqdhbog21c" path="res://Game/Env/FillerTilemap.tres" id="6_bhcbk"]
 [ext_resource type="PackedScene" uid="uid://bif7dfxiod6vm" path="res://Game/Env/killzone/killzone.tscn" id="6_cwq06"]
-[ext_resource type="Texture2D" uid="uid://clfc6orol40tt" path="res://Game/Player/bow/pixelArrow.png" id="7_bhcbk"]
+[ext_resource type="Texture2D" uid="uid://clfc6orol40tt" path="res://Game/Player/bow/arrow/pixelArrow.png" id="7_bhcbk"]
 [ext_resource type="PackedScene" uid="uid://i63netiq1kep" path="res://Game/Env/bouncy/bouncy.tscn" id="7_kkmom"]
 [ext_resource type="PackedScene" uid="uid://jwplg7gbb6re" path="res://Game/Env/collectible/collectible.tscn" id="8_878my"]
 
@@ -60,12 +60,12 @@ size = Vector2(128, 20)
 
 [node name="RootGame" type="Node2D"]
 script = ExtResource("1_8edvr")
-current_lvl = 9
 
 [node name="Player" parent="." instance=ExtResource("2_fudmu")]
 unique_name_in_owner = true
 position = Vector2(432, -264)
 collision_mask = 7
+arrow_impulse = 1200.0
 has_bow = true
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -108,8 +108,8 @@ tile_set = ExtResource("6_bhcbk")
 [node name="Wind" parent="Levels/0" instance=ExtResource("4_4bpsl")]
 position = Vector2(376.00003, -312.00003)
 rotation = 1.0471976
-gravity_point_center = Vector2(-0.9992676, 1.731628)
-gravity_direction = Vector2(-0.9992676, 1.731628)
+gravity_point_center = Vector2(-0.9999944, 1.7320476)
+gravity_direction = Vector2(-0.9999944, 1.7320476)
 h = 200
 
 [node name="Label" type="Label" parent="Levels/0"]

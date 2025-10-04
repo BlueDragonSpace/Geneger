@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://076yl7mxetv0"]
+[gd_scene load_steps=5 format=3 uid="uid://076yl7mxetv0"]
 
 [ext_resource type="Script" uid="uid://vevkspviu5vk" path="res://Game/Env/wind/wind.gd" id="1_pv1kb"]
 [ext_resource type="Texture2D" uid="uid://crumimuke6tex" path="res://Game/Env/wind/Looping Wind-1.png.png" id="2_563j5"]
+[ext_resource type="AudioStream" uid="uid://dj26s7qkt2ckk" path="res://Game/Env/wind/wind.wav" id="3_563j5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pv1kb"]
 resource_local_to_scene = true
@@ -21,7 +22,12 @@ rotation = 3.1415927
 scale = Vector2(1.02, 1)
 texture = ExtResource("2_563j5")
 region_enabled = true
-region_rect = Rect2(1534.8153, 0, 100, 100)
+region_rect = Rect2(2787.3774, 0, 100, 100)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_pv1kb")
+
+[node name="Wind" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_563j5")
+autoplay = true
+bus = &"SFX"

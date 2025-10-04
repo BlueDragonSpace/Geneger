@@ -1,9 +1,15 @@
-[gd_scene load_steps=34 format=3 uid="uid://bptenx8dxjug3"]
+[gd_scene load_steps=40 format=3 uid="uid://bptenx8dxjug3"]
 
 [ext_resource type="Texture2D" uid="uid://5egvmd37rljr" path="res://icon.svg" id="1_m57qa"]
 [ext_resource type="Script" uid="uid://ch7ydpdriskk3" path="res://Game/Player/player.gd" id="1_s3asc"]
 [ext_resource type="Texture2D" uid="uid://d0x1yafsrllxq" path="res://Game/Player/bow/CritStar.png" id="3_letr6"]
 [ext_resource type="Texture2D" uid="uid://cidg33qkog5qp" path="res://Game/Player/bow/minecraftBow.png" id="3_vytja"]
+[ext_resource type="AudioStream" uid="uid://dd222qx2g5645" path="res://Game/Player/sfx/jump.wav" id="5_segth"]
+[ext_resource type="AudioStream" uid="uid://ixntwe81hbfd" path="res://Game/Player/sfx/player walk.wav" id="6_p2hw7"]
+[ext_resource type="AudioStream" uid="uid://b0cwuvmqmuhwc" path="res://Game/Player/sfx/player dead.wav" id="7_ch4ko"]
+[ext_resource type="AudioStream" uid="uid://c2whoaiiua05t" path="res://Game/Player/sfx/hit ground.wav" id="8_vh1aq"]
+[ext_resource type="AudioStream" uid="uid://bnfjflvnsypoo" path="res://Game/Player/sfx/shootArrow.ogg" id="9_db2hk"]
+[ext_resource type="AudioStream" uid="uid://cj27sg0dcxxse" path="res://Game/Player/sfx/bowLoading.mp3" id="10_q0m6d"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wlpas"]
 atlas = ExtResource("1_m57qa")
@@ -421,7 +427,6 @@ lock_rotation = true
 contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_s3asc")
-arrow_impulse = 1000.0
 metadata/_edit_horizontal_guides_ = [-24.0]
 
 [node name="Art" type="AnimatedSprite2D" parent="."]
@@ -538,6 +543,44 @@ texture = ExtResource("3_vytja")
 [node name="CollectibleArt" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(0, -24)
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+current = true
+
+[node name="Sound" type="Node2D" parent="."]
+
+[node name="Critical" type="AudioStreamPlayer2D" parent="Sound"]
+bus = &"SFX"
+
+[node name="Jump" type="AudioStreamPlayer2D" parent="Sound"]
+stream = ExtResource("5_segth")
+volume_db = -4.039
+pitch_scale = 0.77
+bus = &"SFX"
+
+[node name="PlayerWalk" type="AudioStreamPlayer2D" parent="Sound"]
+stream = ExtResource("6_p2hw7")
+bus = &"SFX"
+
+[node name="PlayerDead" type="AudioStreamPlayer2D" parent="Sound"]
+stream = ExtResource("7_ch4ko")
+volume_db = 2.019
+bus = &"SFX"
+
+[node name="HitGround" type="AudioStreamPlayer2D" parent="Sound"]
+stream = ExtResource("8_vh1aq")
+volume_db = -10.098
+bus = &"SFX"
+
+[node name="ShootArrow" type="AudioStreamPlayer2D" parent="Sound"]
+stream = ExtResource("9_db2hk")
+volume_db = 10.098
+bus = &"SFX"
+
+[node name="BowLoading" type="AudioStreamPlayer2D" parent="Sound"]
+stream = ExtResource("10_q0m6d")
+volume_db = 6.059
+bus = &"SFX"
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_entered" from="Floorbox" to="." method="_on_floorbox_body_entered"]

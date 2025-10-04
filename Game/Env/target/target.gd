@@ -13,6 +13,7 @@ func _on_body_entered(body: Node2D) -> void:
 		is_hit = true
 		var child = NOTIF.instantiate()
 		add_child(child)
+		$Sound.play()
 		
 		UI.current_targets += 1
 	

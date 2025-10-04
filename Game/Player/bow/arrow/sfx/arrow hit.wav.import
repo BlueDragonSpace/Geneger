@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dvnon5fewkkuw"
+path="res://.godot/imported/arrow hit.wav-d5a669cada81ab3b4f2ef3fe57329aaa.sample"
+
+[deps]
+
+source_file="res://Game/Player/bow/arrow/sfx/arrow hit.wav"
+dest_files=["res://.godot/imported/arrow hit.wav-d5a669cada81ab3b4f2ef3fe57329aaa.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

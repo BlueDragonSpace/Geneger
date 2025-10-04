@@ -37,6 +37,7 @@ func _ready() -> void:
 	
 	$Theme/HUD/TargetTracker.visible = false
 	$Theme/Death.visible = true
+	$Theme/Pause.visible = false
 
 func delete_quiver_arrow() -> void:
 	quiver.get_child(0).queue_free()
@@ -58,9 +59,20 @@ func _process(delta: float) -> void:
 		if Global.arrow_type_num > arrow_type.get_child_count() - 1:
 			Global.arrow_type_num = 0
 			arrow_type.get_child(Global.arrow_type_num).modulate.a = 1.0
+		
+		$Sound/ChangeArrow.play()
 	
 	if quiver.get_child_count() < Player.quiver:
 		quiver.add_child(UI_ARROW.instantiate())
+	
+	if Input.is_action_just_pressed("pause"):
+		if get_tree().paused:
+			get_tree().paused = false
+			$Theme/Pause.visible = false
+			$Sound/MenuDissipate.play()
+		else:
+			get_tree().paused = true
+			$Theme/Pause.visible = true
 	
 	# Speedrun Timer
 	time += delta
@@ -70,14 +82,14 @@ func _process(delta: float) -> void:
 	var minute = fmod(time,3600) / 60
 	$Theme/HUD/SpeedrunTimer.text = "%02d" % minute + ":" + "%02d" % sec + "." + "%02d" % msec
 	
-	if current_targets >= target_max:
+	if current_targets >= target_max: #transition to next level
 		transition_in()
 		
 		#makes current_targets the variable equal to 0 as it transitions, but visibly, it shows the max until transition
 		var temp = current_targets
 		current_targets = 0
 		$Theme/HUD/TargetTracker/Current.text = str(temp)
-		
+	
 
 func add_arrow_type() -> void:
 	var child = TYPE.instantiate()

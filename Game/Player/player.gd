@@ -70,6 +70,8 @@ func _physics_process(delta: float) -> void:
 			
 			if in_control:
 				linear_velocity.x += direction * SPEED * delta
+				if not $Sound/PlayerWalk.playing:
+					$Sound/PlayerWalk.play()
 			
 			if not Input.is_action_pressed("charge_shot"):
 				linear_velocity.x = clamp(linear_velocity.x,-MAX_SPEED, MAX_SPEED) #basically friction
@@ -101,11 +103,13 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and in_control:
 		if $Floorbox.has_overlapping_bodies():
 			apply_central_impulse(Vector2(0, -jump_height))
+			$Sound/Jump.play()
 	
 	#WEAPON STUFFF
 	if in_control and quiver > 0 and has_bow:
 		if Input.is_action_just_pressed("charge_shot"):
 			weapon_animate.play("charge",-1, charge_speed_mult)
+			$Sound/BowLoading.play()
 			
 		elif Input.is_action_just_released("charge_shot"):
 			var weapon_direction = Vector2(cos(weapon_pivot.rotation), sin(weapon_pivot.rotation))
@@ -120,24 +124,29 @@ func _physics_process(delta: float) -> void:
 			match(Global.arrow_type_num):
 				
 				1: #straight shooting
+					arrow.type = 'antiGrav'
 					arrow.gravity_scale = 0
 					base_impulse /= 3
 					arrow.modulate = Color(0.0, 1.0, 0.0, 1.0)
 				2: #ghost
+					arrow.type = 'ghost'
 					base_impulse /= 3
 					arrow.modulate = Color(0.0, 0.0, 0.0, 0.5)
 					arrow.collision_mask = 0 #doesn't collide with anything (note that this must be changed back)
 				3: #impulse
+					arrow.type = 'impulse'
 					arrow.visible = false
 					arrow.collision_layer = 0 #doesn't collide with anything
 					base_impulse *= 8 #high knockback
 				_: #default
+					arrow.type = 'basic'
 					arrow.collision_mask = prev_arrow_collision_mask
 					
 			
 			if critable:
 				base_impulse *= crit_bonus
 				arrow.modulate = Color(1.0, 1.0, 0.0, 1.0)
+				$Sound/Critical.play()
 				print('crit!')
 			
 			#adds arrow impulse
@@ -149,6 +158,9 @@ func _physics_process(delta: float) -> void:
 			
 			apply_impulse(-1 * kickback * base_impulse)
 			weapon_animate.play("release", -1, charge_speed_mult)
+			
+			$Sound/BowLoading.stop()
+			$Sound/ShootArrow.play()
 			
 			quiver -= 1
 			arrow_released.emit()
@@ -167,9 +179,11 @@ func _on_hitbox_body_entered(_body: Node2D) -> void:
 	in_control = false
 	set_deferred("lock_rotation", false)
 	set_deferred("angular_velocity", randf_range(-1,1) * PI * 10)
-	##HHEHEEHEHEHEHEHEHEHEHEHEHEH
-	UI.animate.play("death_in") ##HERHEREHEHREHR
+	$Sound/PlayerDead.play()
+	UI.animate.play("death_in") 
+	
 
 func _on_floorbox_body_entered(_body: Node2D) -> void:
 	$Floorbox/LeftFloorParticle.emitting = true
 	$Floorbox/RightFloorParticle.emitting = true
+	$Sound/HitGround.play()

@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b74p3aywoe3kr"]
+[gd_scene load_steps=5 format=3 uid="uid://b74p3aywoe3kr"]
 
 [ext_resource type="Script" uid="uid://b6sphm8disii6" path="res://Game/Env/target/target.gd" id="1_jyvkn"]
 [ext_resource type="Texture2D" uid="uid://5egvmd37rljr" path="res://icon.svg" id="2_vuv84"]
+[ext_resource type="AudioStream" uid="uid://cnlsufr1b2dve" path="res://Game/Env/target/target.wav" id="3_qmsjg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hmjml"]
 size = Vector2(32, 8)
@@ -21,5 +22,9 @@ texture = ExtResource("2_vuv84")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_hmjml")
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_qmsjg")
+max_distance = 4096.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cnxpmw5qe5dg"
+path="res://.godot/imported/menu dissipate.wav-947ed15297a92d9c91c3cba2c4403ddd.sample"
+
+[deps]
+
+source_file="res://UI/sfx/menu dissipate.wav"
+dest_files=["res://.godot/imported/menu dissipate.wav-947ed15297a92d9c91c3cba2c4403ddd.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

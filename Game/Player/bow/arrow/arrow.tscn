@@ -1,0 +1,79 @@
+[gd_scene load_steps=12 format=3 uid="uid://ch6dhgj3k4iki"]
+
+[ext_resource type="Script" uid="uid://ca0lad8xv0mif" path="res://Game/Player/bow/arrow/arrow.gd" id="1_aw2hv"]
+[ext_resource type="Shader" uid="uid://b3rwmkrcbnwfw" path="res://UI/shaders/pixel_outline.gdshader" id="2_2kp14"]
+[ext_resource type="Texture2D" uid="uid://clfc6orol40tt" path="res://Game/Player/bow/arrow/pixelArrow.png" id="3_6dvl8"]
+[ext_resource type="Texture2D" uid="uid://5egvmd37rljr" path="res://icon.svg" id="4_yf8l1"]
+[ext_resource type="AudioStream" uid="uid://dvds06m4m4kow" path="res://Game/Player/bow/arrow/sfx/Anti-grav arrow.wav" id="5_2kp14"]
+[ext_resource type="AudioStream" uid="uid://dufcsbx6eqfhg" path="res://Game/Player/bow/arrow/sfx/ghostArrowSound.wav" id="6_yf8l1"]
+[ext_resource type="AudioStream" uid="uid://dvnon5fewkkuw" path="res://Game/Player/bow/arrow/sfx/arrow hit.wav" id="7_gup82"]
+[ext_resource type="AudioStream" uid="uid://unbpa4eaffs3" path="res://Game/Player/bow/arrow/sfx/arrowGoing.wav" id="8_gup82"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i17d8"]
+radius = 4.0
+height = 16.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vvof3"]
+shader = ExtResource("2_2kp14")
+shader_parameter/clr = Color(0, 0, 0, 1)
+shader_parameter/type = 1
+shader_parameter/thickness = 1.0
+
+[sub_resource type="Gradient" id="Gradient_kdg8e"]
+offsets = PackedFloat32Array(0.020547945, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="Arrow" type="RigidBody2D"]
+collision_layer = 8
+collision_mask = 2
+center_of_mass_mode = 1
+center_of_mass = Vector2(12, 0)
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_aw2hv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 0)
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_i17d8")
+
+[node name="Art" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_vvof3")
+position = Vector2(8, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_6dvl8")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 6
+texture = ExtResource("4_yf8l1")
+one_shot = true
+explosiveness = 1.0
+particle_flag_align_y = true
+direction = Vector2(-1, 0)
+spread = 90.0
+gravity = Vector2(0, 200)
+initial_velocity_min = 40.0
+initial_velocity_max = 60.0
+scale_amount_min = 0.03
+scale_amount_max = 0.03
+color_ramp = SubResource("Gradient_kdg8e")
+
+[node name="Sound" type="Node2D" parent="."]
+
+[node name="AntiGrav" type="AudioStreamPlayer2D" parent="Sound"]
+stream = ExtResource("5_2kp14")
+volume_db = 2.019
+bus = &"SFX"
+
+[node name="Ghost" type="AudioStreamPlayer2D" parent="Sound"]
+stream = ExtResource("6_yf8l1")
+bus = &"SFX"
+
+[node name="ArrowHit" type="AudioStreamPlayer2D" parent="Sound"]
+stream = ExtResource("7_gup82")
+bus = &"SFX"
+
+[node name="ArrowGoing" type="AudioStreamPlayer2D" parent="Sound"]
+stream = ExtResource("8_gup82")
+volume_db = -9.087

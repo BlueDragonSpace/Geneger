@@ -1,17 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://i63netiq1kep"]
+[gd_scene load_steps=6 format=3 uid="uid://i63netiq1kep"]
 
+[ext_resource type="Script" uid="uid://6dhgiiuq15n6" path="res://Game/Env/bouncy/bouncy.gd" id="1_5shoo"]
 [ext_resource type="Texture2D" uid="uid://5egvmd37rljr" path="res://icon.svg" id="1_usde3"]
+[ext_resource type="Shape2D" uid="uid://cwnt4paoabl0o" path="res://Game/Env/bouncy/bouncyHitbox.tres" id="3_nnpcj"]
+[ext_resource type="AudioStream" uid="uid://dxdsvytu38b23" path="res://Game/Env/bouncy/arrow bounce.wav" id="4_7k6dj"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4bpsl"]
 bounce = 1.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_j4r2b"]
-size = Vector2(296, 18)
 
 [node name="Bouncy" type="StaticBody2D"]
 collision_layer = 2
 collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_4bpsl")
+script = ExtResource("1_5shoo")
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(3.8146973e-06, 3.8146973e-06)
@@ -20,7 +21,7 @@ texture = ExtResource("1_usde3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_j4r2b")
+shape = ExtResource("3_nnpcj")
 
 [node name="Label" type="Label" parent="."]
 offset_left = -40.0
@@ -28,3 +29,16 @@ offset_top = -40.0
 offset_right = 50.0
 offset_bottom = -17.0
 text = "I'm bouncy!"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 13
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = ExtResource("3_nnpcj")
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_7k6dj")
+bus = &"SFX"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://clfc6orol40tt"
-path="res://.godot/imported/pixelArrow.png-35b5814aaaea4c36121c96bde518d9c1.ctex"
+path="res://.godot/imported/pixelArrow.png-01ad1b533826ff7fe198b562b4944c94.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Game/Player/bow/pixelArrow.png"
-dest_files=["res://.godot/imported/pixelArrow.png-35b5814aaaea4c36121c96bde518d9c1.ctex"]
+source_file="res://Game/Player/bow/arrow/pixelArrow.png"
+dest_files=["res://.godot/imported/pixelArrow.png-01ad1b533826ff7fe198b562b4944c94.ctex"]
 
 [params]
 
