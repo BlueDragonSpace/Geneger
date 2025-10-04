@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6m88ml6xvqwn"]
+
+[ext_resource type="Texture2D" uid="uid://b85tek7ov8xdv" path="res://Game/Env/vfx/firefly/Firefly.png" id="1_ga5gr"]
+[ext_resource type="Texture2D" uid="uid://bm3ep5spldl6w" path="res://Game/Env/vfx/firefly/lightShape.webp" id="2_wuiyt"]
+[ext_resource type="Script" uid="uid://70bpoywe1ryd" path="res://Game/Env/vfx/firefly/firefly.gd" id="2_yhms3"]
+
+[node name="Firefly" type="Sprite2D"]
+scale = Vector2(2, 2)
+texture = ExtResource("1_ga5gr")
+script = ExtResource("2_yhms3")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-1, 0)
+texture = ExtResource("2_wuiyt")
+texture_scale = 0.03
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

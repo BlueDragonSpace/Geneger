@@ -8,8 +8,6 @@ Must:
 	
 Should probably:
 	Camera control for rooms
-	Hit Switch Walls
-	Loading Screen change (Shiba inspecific)
 	Ranbow Shader (refer to notebook: HSV(n,100,100) and so on)
 	
 Want:
@@ -18,7 +16,6 @@ Want:
 	Bomb Arrow, Key Arrow?
 	Peggle Close Shot (likely gonna use Phantom Camera + Camera to Arrow) + Follow Path for better level coverage
 	Boss fight scene!!! (Blowing wind, blowing targets to rejuvenate platforms, Hit eyes or something, cool music...)
-	Rope
 	Breakable Object
 	
 Probably not:

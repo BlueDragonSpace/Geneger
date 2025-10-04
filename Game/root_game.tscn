@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://id3v6canaqmk"]
+[gd_scene load_steps=22 format=4 uid="uid://id3v6canaqmk"]
 
 [ext_resource type="Script" uid="uid://bic8ps4anxoj6" path="res://Game/root_game.gd" id="1_8edvr"]
 [ext_resource type="Texture2D" uid="uid://5egvmd37rljr" path="res://icon.svg" id="1_p38nb"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://jwplg7gbb6re" path="res://Game/Env/collectible/collectible.tscn" id="8_878my"]
 [ext_resource type="PackedScene" uid="uid://qce2wbats8ba" path="res://Game/Env/switch/switch_env/switch_env.tscn" id="8_b672w"]
 [ext_resource type="PackedScene" uid="uid://d1s3txry2rr13" path="res://Game/Env/rope/rope.tscn" id="9_6vadt"]
+[ext_resource type="PackedScene" uid="uid://c6m88ml6xvqwn" path="res://Game/Env/vfx/firefly/firefly.tscn" id="10_ty7ck"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fudmu"]
 
@@ -136,6 +137,36 @@ position = Vector2(712, -1560)
 
 [node name="Rope2" parent="Levels/0" instance=ExtResource("9_6vadt")]
 position = Vector2(760, -1544)
+
+[node name="Firefly" parent="Levels/0" instance=ExtResource("10_ty7ck")]
+position = Vector2(662, -1480)
+
+[node name="Firefly2" parent="Levels/0" instance=ExtResource("10_ty7ck")]
+position = Vector2(707, -1480)
+
+[node name="Firefly3" parent="Levels/0" instance=ExtResource("10_ty7ck")]
+position = Vector2(664, -1520)
+
+[node name="Firefly4" parent="Levels/0" instance=ExtResource("10_ty7ck")]
+position = Vector2(684, -1496)
+
+[node name="Firefly5" parent="Levels/0" instance=ExtResource("10_ty7ck")]
+position = Vector2(732, -1492)
+
+[node name="Firefly6" parent="Levels/0" instance=ExtResource("10_ty7ck")]
+position = Vector2(712, -1516)
+
+[node name="Firefly7" parent="Levels/0" instance=ExtResource("10_ty7ck")]
+position = Vector2(152, -1488)
+
+[node name="Firefly8" parent="Levels/0" instance=ExtResource("10_ty7ck")]
+position = Vector2(1192, -1532)
+
+[node name="Firefly9" parent="Levels/0" instance=ExtResource("10_ty7ck")]
+position = Vector2(1272, -1560)
+
+[node name="Firefly10" parent="Levels/0" instance=ExtResource("10_ty7ck")]
+position = Vector2(1243, -1532)
 
 [node name="1" type="Node2D" parent="Levels"]
 position = Vector2(1696, -224)
