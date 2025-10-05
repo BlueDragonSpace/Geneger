@@ -6,9 +6,9 @@ extends TileMapLayer
 @export var inverse = true
 
 func _ready() -> void:
-	Game.connect("envSwitched", switch)
 	
 	if not Engine.is_editor_hint():
+		Game.connect("envSwitched", switch)
 		switch() #calls to make sure every value is correct at start
 
 func switch() -> void:

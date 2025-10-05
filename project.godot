@@ -47,6 +47,10 @@ Player="Global Player"
 UI="Global UI class"
 Game="Global Game Group"
 
+[gui]
+
+theme/custom_font="uid://bhktyuykd5tsg"
+
 [input]
 
 move_left={

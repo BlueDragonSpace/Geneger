@@ -67,7 +67,7 @@ script = ExtResource("1_8edvr")
 
 [node name="Player" parent="." instance=ExtResource("2_fudmu")]
 unique_name_in_owner = true
-position = Vector2(606, -1528)
+position = Vector2(624, -1496)
 collision_mask = 7
 arrow_impulse = 1200.0
 has_bow = true
