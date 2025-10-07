@@ -7,4 +7,5 @@
 [node name="CelesteTheivery" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_og3mq")
 volume_db = -14.56
+autoplay = true
 bus = &"Music"

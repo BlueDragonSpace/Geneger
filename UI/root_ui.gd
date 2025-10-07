@@ -2,9 +2,9 @@ extends CanvasLayer
 
 @onready var Player = get_tree().get_first_node_in_group("Player")
 
-@onready var arrow_type: HBoxContainer = $Theme/HUD/ArrowType
-@onready var quiver: VBoxContainer = $Theme/HUD/Quiver
-@onready var animate: AnimationPlayer = $Animate
+@onready var ArrowType: HBoxContainer = $Theme/HUD/ArrowType
+@onready var Quiver: VBoxContainer = $Theme/HUD/Quiver
+@onready var Animate: AnimationPlayer = $Animate
 
 signal transitioning_out
 
@@ -17,10 +17,22 @@ var current_targets = 0:
 		current_targets = new
 		$Theme/HUD/TargetTracker/Current.text = str(current_targets)
 
+@export var started = false: #changed by animation
+	set(new):
+		started = new
+		
+		if Player: #makes sure the player exists, and therefore the game has started
+			Player.in_control = started
+			$Theme/Start.visible = not started
+			
+
+#usually animated...
+@export var can_pause : bool = false #cannot pause during start scene... death, and during transitions
+
 func _ready() -> void:
 	#makes first arrow selected
 	var count = 0
-	for child in arrow_type.get_children():
+	for child in ArrowType.get_children():
 		if count ==  0:
 			child.modulate.a = 1.0
 			Global.arrow_type_num = 0
@@ -29,7 +41,7 @@ func _ready() -> void:
 		count += 1
 	
 	for num in Player.quiver:
-		quiver.add_child(UI_ARROW.instantiate())
+		Quiver.add_child(UI_ARROW.instantiate())
 		
 	#connect("Player.arrow_released", $Theme/Quiver.get_child(0).queue_free)
 	Player.arrow_released.connect(delete_quiver_arrow)
@@ -37,16 +49,20 @@ func _ready() -> void:
 	$Theme/HUD/TargetTracker.visible = false
 	$Theme/Death.visible = true
 	$Theme/Pause.visible = false
+	
+	$Theme/Start.visible = not started
+	Player.in_control = started #isn't this bad code or something idk lol
+	can_pause = started
 
 func delete_quiver_arrow() -> void:
-	quiver.get_child(0).queue_free()
+	Quiver.get_child(0).queue_free()
 	#Global.quiver -= 1
 
 func _process(_delta: float) -> void:
 	
 	if Input.is_action_just_pressed("switch_arrow"):
-		for num in range (0,arrow_type.get_child_count()):
-			var child = arrow_type.get_child(num)
+		for num in range (0,ArrowType.get_child_count()):
+			var child = ArrowType.get_child(num)
 			
 			if child.modulate.a == 1.0:
 				child.modulate.a = 0.5
@@ -55,16 +71,16 @@ func _process(_delta: float) -> void:
 				child.modulate.a = 1.0
 		
 		#on case of last index, loop back around
-		if Global.arrow_type_num > arrow_type.get_child_count() - 1:
+		if Global.arrow_type_num > ArrowType.get_child_count() - 1:
 			Global.arrow_type_num = 0
-			arrow_type.get_child(Global.arrow_type_num).modulate.a = 1.0
+			ArrowType.get_child(Global.arrow_type_num).modulate.a = 1.0
 		
 		$Sound/ChangeArrow.play()
 	
-	if quiver.get_child_count() < Player.quiver:
-		quiver.add_child(UI_ARROW.instantiate())
+	if Quiver.get_child_count() < Player.quiver:
+		Quiver.add_child(UI_ARROW.instantiate())
 	
-	if Input.is_action_just_pressed("pause"):
+	if Input.is_action_just_pressed("pause") and can_pause:
 		if get_tree().paused:
 			get_tree().paused = false
 			$Theme/Pause.visible = false
@@ -88,18 +104,23 @@ func _process(_delta: float) -> void:
 		current_targets = 0
 		$Theme/HUD/TargetTracker/Current.text = str(temp)
 	
+	#start game
+	if not started and Input.is_action_just_pressed("advance"):
+		Animate.play("start_in")
 
-func add_arrow_type() -> void:
+	
+
+func add_arrow_type() -> void: #this function is not used??
 	var child = TYPE.instantiate()
 	#child.modulate = Color(randi_range(0,255),randi_range(0,255),randi_range(0,255))
-	arrow_type.add_child(child)
+	ArrowType.add_child(child)
 	
 func transition_in() -> void:
-	animate.play("transition_in")
+	Animate.play("transition_in")
 
 func transtion_out() -> void:
 	transitioning_out.emit()
-	animate.play("transition_out")
+	Animate.play("transition_out")
 	
 	$Theme/HUD/TargetTracker.visible = true
 	$Theme/HUD/TargetTracker/Current.text = "0"

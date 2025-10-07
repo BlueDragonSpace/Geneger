@@ -32,25 +32,36 @@ var is_dead: bool = false #is the player dead
 	set(new):
 		has_bow = new
 		if has_bow:
-			$WeaponPivot.visible = true
+			if weapon_pivot: #is it defined
+				weapon_pivot.set_deferred("visible", true)
+				$Crosshair.set_deferred('visible', true)
 
 const ARROW = preload("uid://ch6dhgj3k4iki")
 var prev_arrow_collision_mask = ARROW.instantiate().collision_mask
 var quiver = 10 #number of arrows you have
+@export var projectile_count: int = 5 #number of arrows that are visible on the screen at max
 @export var critable = false #if released this frame, does it crit? (exported for convenince of animation)
+
+const CROSSHAIR_RADIUS = 64 #max distance between player and crosshair
 
 signal arrow_released
 #endregion
 
 func _ready() -> void:
 	weapon_pivot.visible = false
+	$Crosshair.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	var mouse = get_global_mouse_position()
 	
 	if in_control:
-		weapon_pivot.look_at(mouse)
+		
+		if Global.joypad:
+			$Crosshair.position = Global.joypad_right_stick * CROSSHAIR_RADIUS
+			weapon_pivot.look_at($Crosshair.global_position)
+		else: 
+			var mouse = get_global_mouse_position()
+			weapon_pivot.look_at(mouse)
 	elif Input.is_action_just_pressed("advance") and is_dead:
 		get_tree().reload_current_scene()
 		
@@ -153,7 +164,7 @@ func _physics_process(delta: float) -> void:
 			arrow.apply_impulse(arrow_impulse * base_impulse)
 			
 			$Projectiles.add_child(arrow)
-			if $Projectiles.get_child_count() > 5:
+			if $Projectiles.get_child_count() > projectile_count:
 				$Projectiles.remove_child($Projectiles.get_child(0))
 			
 			apply_impulse(-1 * kickback * base_impulse)
@@ -180,7 +191,7 @@ func _on_hitbox_body_entered(_body: Node2D) -> void:
 	set_deferred("lock_rotation", false)
 	set_deferred("angular_velocity", randf_range(-1,1) * PI * 10)
 	$Sound/PlayerDead.play()
-	UI.animate.play("death_in") 
+	UI.Animate.play("death_in") 
 	
 
 func _on_floorbox_body_entered(_body: Node2D) -> void:

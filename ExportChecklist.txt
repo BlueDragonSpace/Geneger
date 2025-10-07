@@ -1,5 +1,5 @@
 Set all player vars to default (check player scene and root game) They BETTER not have a bow!!!
 Set Current Level on Root to 0
-Set UI to no Arrows
+Set UI to no Arrows + Started to false
 Check Colors on Loading Background make sense and Image
 Check all Audio Buses and SFX + Music is properly configured

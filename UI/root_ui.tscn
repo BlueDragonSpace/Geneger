@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dkbyck6uumwp1" path="res://UI/root_ui.gd" id="1_vcau6"]
 [ext_resource type="Texture2D" uid="uid://5egvmd37rljr" path="res://icon.svg" id="2_qoywv"]
-[ext_resource type="PackedScene" uid="uid://fp8qbuv3sgpo" path="res://UI/type.tscn" id="2_rugm2"]
 [ext_resource type="Shader" uid="uid://ct11oysvt83f4" path="res://UI/shaders/pixellizer.gdshader" id="3_6ke0s"]
 [ext_resource type="Shader" uid="uid://bjdto1ihsabnr" path="res://UI/shaders/chromaticaberation.gdshader" id="3_fkrse"]
 [ext_resource type="PackedScene" uid="uid://ds8ha74oyja1o" path="res://UI/ui_arrow.tscn" id="3_hh8yt"]
@@ -76,6 +75,41 @@ tracks/3/keys = {
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Start:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Start:modulate:a")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../..:can_pause")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_fkrse"]
 resource_name = "death_in"
@@ -89,6 +123,68 @@ tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 2),
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.16666667, -0.16666667, 0, 0),
 "times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../..:can_pause")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_byxa4"]
+resource_name = "start_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Start:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Start:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.16666667, 0.16666667, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../..:started")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../..:can_pause")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_6ke0s"]
@@ -129,6 +225,18 @@ tracks/2/keys = {
 "points": PackedFloat32Array(0, 0, 0, 0.16666667, 0.16666667, 1, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 1)
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../..:can_pause")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_a8jcl"]
 resource_name = "transition_out"
@@ -166,11 +274,24 @@ tracks/2/keys = {
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.16666667, -0.16666667, 0, 0),
 "times": PackedFloat32Array(0, 1)
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../..:can_pause")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fkrse"]
 _data = {
 &"RESET": SubResource("Animation_qoywv"),
 &"death_in": SubResource("Animation_fkrse"),
+&"start_in": SubResource("Animation_byxa4"),
 &"transition_in": SubResource("Animation_6ke0s"),
 &"transition_out": SubResource("Animation_a8jcl")
 }
@@ -208,18 +329,6 @@ anchor_bottom = 0.975
 offset_top = -80.32001
 offset_right = 500.0
 grow_vertical = 0
-
-[node name="Type" parent="Theme/HUD/ArrowType" instance=ExtResource("2_rugm2")]
-layout_mode = 2
-
-[node name="Type2" parent="Theme/HUD/ArrowType" instance=ExtResource("2_rugm2")]
-layout_mode = 2
-
-[node name="Type3" parent="Theme/HUD/ArrowType" instance=ExtResource("2_rugm2")]
-layout_mode = 2
-
-[node name="Type4" parent="Theme/HUD/ArrowType" instance=ExtResource("2_rugm2")]
-layout_mode = 2
 
 [node name="Quiver" type="VBoxContainer" parent="Theme/HUD"]
 custom_minimum_size = Vector2(100, 40)
@@ -302,6 +411,7 @@ grow_vertical = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 128
 text = "Ur ded"
+horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="Theme/Death/VBoxContainer"]
 layout_mode = 2
@@ -316,6 +426,7 @@ offset_bottom = 40.0
 
 [node name="Pause" type="ColorRect" parent="Theme"]
 process_mode = 2
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -364,6 +475,48 @@ offset_right = 24.5
 grow_horizontal = 2
 grow_vertical = 0
 text = "Quit?"
+
+[node name="Start" type="Control" parent="Theme"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Theme/Start"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.4, 1, 0.2784314, 0.2784314)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Theme/Start"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Theme/Start/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 128
+text = "Awesometastic Start Screen"
+
+[node name="Label2" type="Label" parent="Theme/Start/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Press Enter To Start"
+horizontal_alignment = 1
 
 [node name="TransitionPanel" type="TextureRect" parent="Theme"]
 modulate = Color(0.94509804, 0, 0.94509804, 0.7019608)

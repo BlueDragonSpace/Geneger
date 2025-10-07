@@ -1,12 +1,12 @@
 lalalalalalalalaalalala
 
 Must:
-	Art and Music..
+	Art and Music...
 	
 Should probably:
 	Camera control for rooms
 	Ranbow Shader (refer to notebook: HSV(n,100,100) and so on)
-	
+	Speedrun time vs time spent
 Want:
 	Arrow Guide: Arrow Dot Path Midflight (Ballistics Plugin?)
 	Multi-shot + Rapid fire lol
@@ -14,7 +14,7 @@ Want:
 	Peggle Close Shot (likely gonna use Phantom Camera + Camera to Arrow) + Follow Path for better level coverage
 	Boss fight scene!!! (Blowing wind, blowing targets to rejuvenate platforms, Hit eyes or something, cool music...)
 	Breakable Object
-	
+	Controller Support (warning for trackpad?)
 Probably not:
 	Collectible increases your draw speed, jump height...
 	Puzzle?
@@ -32,22 +32,7 @@ Mood...:
 	Bushes, Nature, Trees, Hills, Leaves
 
 Music:
-	wav files don't loop but mp3s do
-	Reimport: 
-		Arrow Going (loop by mp3)
-		Wind (loop by mp3)
-	Redo:
-		Critical (high pitch)
-		Jump (high pitch)
-		Target (kinda just feels off)
-	Add:
-		Failure to Jump (puff of air) (show Celeste)
-		Pause
-		Out of Arrows
-		Impulse
-		Light Passage? (like an environment feature that opens up when you hit all targets and it's made of light)
-		Next Lvl.
-		Collecting Animation
+	Liam's problem
 	Unimplemented on my end:
 		Start
 		
