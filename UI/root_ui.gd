@@ -21,10 +21,14 @@ var current_targets = 0:
 	set(new):
 		started = new
 		
+		if started:
+			has_started.emit()
+		
 		if Player: #makes sure the player exists, and therefore the game has started
 			Player.in_control = started
 			$Theme/Start.visible = not started
 			
+signal has_started 
 
 #usually animated...
 @export var can_pause : bool = false #cannot pause during start scene... death, and during transitions
@@ -90,6 +94,10 @@ func _process(_delta: float) -> void:
 			$Theme/Pause.visible = true
 	
 	# Speedrun Timer
+	if not started:
+		#now this... is what we call "cheating"
+		Global.time = 0
+		
 	
 	var msec = fmod(Global.time, 1) * 100
 	var sec = fmod(Global.time,60)

@@ -9,6 +9,8 @@ var joypad = false #is using an external computer
 var joypad_deadzone = 0.1
 var joypad_right_stick = Vector2.ZERO #deadzoned coordinates
 
+var dev_mode = true
+
 func _ready() -> void:
 	
 	###Joypads!!!
@@ -21,7 +23,7 @@ func _process(delta: float) -> void:
 	
 	time += delta
 	
-	if Input.is_action_just_pressed("debug1"):
+	if Input.is_action_just_pressed("debug1") and dev_mode:
 		get_tree().reload_current_scene()
 		print("scene reloaded")
 	

@@ -5,7 +5,7 @@ extends Node2D
 @export var current_lvl = 0
 
 @onready var levels: Node2D = $Levels
-# [spawn point, num targets,]
+#### [spawn point, num targets, quiver] ****** HIGHLY IMPORTANTTTTTTT
 var lvl_index := []
 
 signal envSwitched
@@ -26,14 +26,17 @@ func _ready() -> void:
 				if sub_child.name.begins_with("Target"):
 					targets += 1
 				
-			lvl_index.push_back([child.position, targets])
+			lvl_index.push_back([child.position, targets, child.quiver])
 	
 	#%Player.teleport(lvl_index[current_lvl][0]) # doesn't work here?
 	UI.connect("transitioning_out", next_level)
+	UI.connect("has_started", start_rise)
+	
+	$Player/Camera2D.reset_smoothing()
 
 func _process(_delta: float) -> void:
 	
-	if Input.is_action_just_pressed("debug4"):
+	if Input.is_action_just_pressed("debug4") and Global.dev_mode:
 		UI.transition_in()
 
 func next_level() -> void:
@@ -44,6 +47,14 @@ func next_level() -> void:
 		
 		%Player.teleport(lvl_index[current_lvl][0])
 		$Player/Camera2D.position = Vector2(0,0) #teleports camera to player, to stop camera jerk to position
-		
+		%Player.quiver = lvl_index[current_lvl][2]
 		
 		UI.target_max = lvl_index[current_lvl][1] #accesses amount of targets on this level
+
+#start game functions
+func start_rise() -> void:
+	$"Levels/0/StartRise/AnimationPlayer".play("rise")
+	$Player/Camera2D.position_smoothing_enabled = true
+
+func _on_fall_area_body_entered(_body: Node2D) -> void:
+	$"Levels/0/StartRise/AnimationPlayer".play_backwards("fall") #plays fall backwards

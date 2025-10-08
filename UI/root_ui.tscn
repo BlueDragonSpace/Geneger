@@ -519,7 +519,6 @@ text = "Press Enter To Start"
 horizontal_alignment = 1
 
 [node name="TransitionPanel" type="TextureRect" parent="Theme"]
-modulate = Color(0.94509804, 0, 0.94509804, 0.7019608)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -1.0

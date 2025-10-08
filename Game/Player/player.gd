@@ -38,13 +38,16 @@ var is_dead: bool = false #is the player dead
 
 const ARROW = preload("uid://ch6dhgj3k4iki")
 var prev_arrow_collision_mask = ARROW.instantiate().collision_mask
-var quiver = 10 #number of arrows you have
+var quiver = 0 #number of arrows you have
 @export var projectile_count: int = 5 #number of arrows that are visible on the screen at max
 @export var critable = false #if released this frame, does it crit? (exported for convenince of animation)
 
 const CROSSHAIR_RADIUS = 64 #max distance between player and crosshair
 
 signal arrow_released
+
+@onready var Camera: Camera2D = $Camera2D
+
 #endregion
 
 func _ready() -> void:
@@ -66,7 +69,7 @@ func _process(_delta: float) -> void:
 		get_tree().reload_current_scene()
 		
 	## DEBUG
-	if Input.is_action_just_pressed("debug2"):
+	if Input.is_action_just_pressed("debug2") and Global.dev_mode:
 		quiver += 1
 
 func _physics_process(delta: float) -> void:
@@ -192,6 +195,12 @@ func _on_hitbox_body_entered(_body: Node2D) -> void:
 	set_deferred("angular_velocity", randf_range(-1,1) * PI * 10)
 	$Sound/PlayerDead.play()
 	UI.Animate.play("death_in") 
+	
+	#sets the Camera to stop following the player
+	Camera.position = Camera.get_screen_center_position()
+	var CameraNode = Node.new()
+	add_child(CameraNode)
+	Camera.reparent(CameraNode, false) #makes the Camera parented to a default Node, so it stops following position
 	
 
 func _on_floorbox_body_entered(_body: Node2D) -> void:

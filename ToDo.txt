@@ -6,7 +6,6 @@ Must:
 Should probably:
 	Camera control for rooms
 	Ranbow Shader (refer to notebook: HSV(n,100,100) and so on)
-	Speedrun time vs time spent
 Want:
 	Arrow Guide: Arrow Dot Path Midflight (Ballistics Plugin?)
 	Multi-shot + Rapid fire lol
@@ -26,6 +25,15 @@ Probably not:
 
 Gimmicks?:
 	Upside-down functions really well...
+
+Mechanics:
+	Platforming
+	Bow + Arrow
+	Bouncy
+	Rope
+	Switch-hit
+	Wind
+	Arrows: Anti-Grav, Ghost, Impulse
 
 Mood...:
 	Peaceful, Celeste Golden Feather Mix

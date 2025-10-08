@@ -551,6 +551,15 @@ texture = ExtResource("3_vytja")
 visible = false
 position = Vector2(0, -24)
 
+[node name="Camera2D" type="Camera2D" parent="."]
+rotation = 0.052359883
+ignore_rotation = false
+zoom = Vector2(1.5, 1.5)
+limit_left = 0
+limit_bottom = 0
+rotation_smoothing_enabled = true
+rotation_smoothing_speed = 1.0
+
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
 current = true
 
