@@ -51,6 +51,7 @@ func _ready() -> void:
 	Player.arrow_released.connect(delete_quiver_arrow)
 	
 	$Theme/HUD/TargetTracker.visible = false
+	$Theme/HUD/SpeedrunTimer.visible = false
 	$Theme/Death.visible = true
 	$Theme/Pause.visible = false
 	
@@ -136,3 +137,7 @@ func transtion_out() -> void:
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_speedrun_button_pressed() -> void:
+	$Theme/HUD/SpeedrunTimer.visible = $Theme/Pause/SpeedrunButton.button_pressed

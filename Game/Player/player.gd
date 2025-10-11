@@ -34,13 +34,18 @@ var is_dead: bool = false #is the player dead
 		if has_bow:
 			if weapon_pivot: #is it defined
 				weapon_pivot.set_deferred("visible", true)
-				$Crosshair.set_deferred('visible', true)
+				
+				if Global.joypad: #is joypad on
+					$Crosshair.set_deferred('visible', true)
 
 const ARROW = preload("uid://ch6dhgj3k4iki")
+const PLATFORM_ARROW = preload("uid://cmijyf4lj0opg")
+
 var prev_arrow_collision_mask = ARROW.instantiate().collision_mask
 var quiver = 0 #number of arrows you have
 @export var projectile_count: int = 5 #number of arrows that are visible on the screen at max
 @export var critable = false #if released this frame, does it crit? (exported for convenince of animation)
+var tension_release = true #when the player pulls bowstring back, but decides not to fire an arrow (change arrow type to release tension)
 
 const CROSSHAIR_RADIUS = 64 #max distance between player and crosshair
 
@@ -124,38 +129,58 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("charge_shot"):
 			weapon_animate.play("charge",-1, charge_speed_mult)
 			$Sound/BowLoading.play()
+			tension_release = false
+		
+		#presses switch arrow while tension is on the string, releases tension
+		if Input.is_action_just_pressed("switch_arrow") and not tension_release:
+			tension_release = true
+			weapon_animate.play("release", -1, charge_speed_mult / 2)
 			
-		elif Input.is_action_just_released("charge_shot"):
+		elif Input.is_action_just_released("charge_shot") and not tension_release:
 			var weapon_direction = Vector2(cos(weapon_pivot.rotation), sin(weapon_pivot.rotation))
 			var base_impulse = weapon_direction * weapon_animate.current_animation_position
 			
 			#adds arrow as child, then adds general qualities
-			var arrow = ARROW.instantiate()
-			arrow.position = global_position
-			arrow.rotation = weapon_pivot.rotation
+			var arrow = null
 			
 			#specific qualities (based on arrow type)
 			match(Global.arrow_type_num):
 				
 				1: #straight shooting
+					arrow = ARROW.instantiate()
 					arrow.type = 'antiGrav'
 					arrow.gravity_scale = 0
 					base_impulse /= 3
 					arrow.modulate = Color(0.0, 1.0, 0.0, 1.0)
 				2: #ghost
+					arrow = ARROW.instantiate()
 					arrow.type = 'ghost'
 					base_impulse /= 3
 					arrow.modulate = Color(0.0, 0.0, 0.0, 0.5)
 					arrow.collision_mask = 0 #doesn't collide with anything (note that this must be changed back)
 				3: #impulse
+					arrow = ARROW.instantiate()
 					arrow.type = 'impulse'
 					arrow.visible = false
 					arrow.collision_layer = 0 #doesn't collide with anything
 					base_impulse *= 8 #high knockback
+				4: #platform
+					arrow = PLATFORM_ARROW.instantiate()
+					arrow.type = 'platform'
+					base_impulse /= 6
+					arrow.modulate = Color(1.0, 1.0, 0.0, 1.0)
+					arrow.collision_layer = 10 #layer 2 and 4, meaning it is also a platform
+				5: #teleport
+					arrow = ARROW.instantiate()
+					arrow.type = 'teleport'
+					#arrow.modulate = Color
 				_: #default
+					arrow = ARROW.instantiate()
 					arrow.type = 'basic'
 					arrow.collision_mask = prev_arrow_collision_mask
-					
+			
+			arrow.position = global_position
+			arrow.rotation = weapon_pivot.rotation
 			
 			if critable:
 				base_impulse *= crit_bonus
@@ -164,7 +189,11 @@ func _physics_process(delta: float) -> void:
 				print('crit!')
 			
 			#adds arrow impulse
-			arrow.apply_impulse(arrow_impulse * base_impulse)
+			if arrow.type != 'platform':
+				arrow.apply_impulse(arrow_impulse * base_impulse)
+			else:
+				arrow.strange_velocity = arrow_impulse * base_impulse
+				arrow.position += (arrow.platform_width / 4) * base_impulse #makes platform spawn a little bit away
 			
 			$Projectiles.add_child(arrow)
 			if $Projectiles.get_child_count() > projectile_count:

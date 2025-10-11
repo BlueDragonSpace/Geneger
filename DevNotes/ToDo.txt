@@ -7,20 +7,26 @@ Should probably:
 	Camera control for rooms
 	Ranbow Shader (refer to notebook: HSV(n,100,100) and so on)
 Want:
+	Platform Arrow, Teleport Arrow
 	Arrow Guide: Arrow Dot Path Midflight (Ballistics Plugin?)
 	Multi-shot + Rapid fire lol
 	Bomb Arrow, Key Arrow?
 	Peggle Close Shot (likely gonna use Phantom Camera + Camera to Arrow) + Follow Path for better level coverage
 	Boss fight scene!!! (Blowing wind, blowing targets to rejuvenate platforms, Hit eyes or something, cool music...)
 	Breakable Object
-	Controller Support (warning for trackpad?)
+	Jump Buffer (jump when you pressed the button too early)
+	Camera Peeking (hold down look down, hold up look up)
 Probably not:
+	
 	Collectible increases your draw speed, jump height...
 	Puzzle?
 	Arrow / Bow Enchanting?
 	Arrow as a platform?
-	Player arrows could be charged based on position in bow, rather than time of animation
 	Center hit for points (would entail a points system, and how to figure out distance from center...)
+
+Refactoring: 
+	Multiple inheritance for rigidbody arrows vs staticbody (platform) arrow
+	Player arrows could be charged based on position in bow, rather than time of animations
 	
 
 Gimmicks?:

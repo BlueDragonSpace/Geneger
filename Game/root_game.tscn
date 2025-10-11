@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://id3v6canaqmk"]
+[gd_scene load_steps=30 format=4 uid="uid://id3v6canaqmk"]
 
 [ext_resource type="Script" uid="uid://bic8ps4anxoj6" path="res://Game/root_game.gd" id="1_8edvr"]
 [ext_resource type="Texture2D" uid="uid://5egvmd37rljr" path="res://icon.svg" id="1_p38nb"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b74p3aywoe3kr" path="res://Game/Env/target/target.tscn" id="3_jpyr4"]
 [ext_resource type="PackedScene" uid="uid://076yl7mxetv0" path="res://Game/Env/wind/wind.tscn" id="4_4bpsl"]
 [ext_resource type="PackedScene" uid="uid://vyr38qq7mxxn" path="res://Game/Env/level/base_level.tscn" id="4_ty7ck"]
+[ext_resource type="Texture2D" uid="uid://dqaqyxk6yehi3" path="res://Game/Env/mainlev_build.png" id="5_pm3a8"]
 [ext_resource type="TileSet" uid="uid://c0bsqdhbog21c" path="res://Game/Env/FillerTilemap.tres" id="6_bhcbk"]
 [ext_resource type="PackedScene" uid="uid://bif7dfxiod6vm" path="res://Game/Env/killzone/killzone.tscn" id="6_cwq06"]
 [ext_resource type="PackedScene" uid="uid://baegsno0bx0kg" path="res://Game/Env/switch/switch.tscn" id="7_516lo"]
@@ -14,23 +15,9 @@
 [ext_resource type="PackedScene" uid="uid://qce2wbats8ba" path="res://Game/Env/switch/switch_env/switch_env.tscn" id="8_b672w"]
 [ext_resource type="PackedScene" uid="uid://d1s3txry2rr13" path="res://Game/Env/rope/rope.tscn" id="9_6vadt"]
 [ext_resource type="PackedScene" uid="uid://c6m88ml6xvqwn" path="res://Game/Env/vfx/firefly/firefly.tscn" id="10_ty7ck"]
+[ext_resource type="PackedScene" uid="uid://jwplg7gbb6re" path="res://Game/Env/collectible/collectible.tscn" id="15_hp3go"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fudmu"]
-
-[sub_resource type="Animation" id="Animation_6vadt"]
-resource_name = "rise"
-length = 5.0
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position:y")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(2, 2),
-"points": PackedFloat32Array(192, 0, 0, 0.16666667, -32, -40, -0.8333334, 38.666668, 0, 0),
-"times": PackedFloat32Array(0, 5)
-}
 
 [sub_resource type="Animation" id="Animation_ty7ck"]
 length = 0.001
@@ -89,6 +76,21 @@ tracks/2/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_6vadt"]
+resource_name = "rise"
+length = 5.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(192, 0, 0, 0.16666667, -32, -40, -0.8333334, 38.666668, 0, 0),
+"times": PackedFloat32Array(0, 5)
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hp3go"]
 _data = {
 &"RESET": SubResource("Animation_ty7ck"),
@@ -97,7 +99,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pm3a8"]
-size = Vector2(442, 20)
+size = Vector2(442, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lir5t"]
 size = Vector2(34, 794)
@@ -155,7 +157,6 @@ unique_name_in_owner = true
 position = Vector2(1848, -120)
 collision_mask = 7
 arrow_impulse = 1200.0
-has_bow = false
 
 [node name="KillFloor" type="StaticBody2D" parent="."]
 position = Vector2(0, 768)
@@ -184,7 +185,64 @@ libraries = {
 &"": SubResource("AnimationLibrary_hp3go")
 }
 
+[node name="Sprites" type="Node2D" parent="Levels/0/StartRise"]
+
+[node name="MainlevBuild" type="Sprite2D" parent="Levels/0/StartRise/Sprites"]
+position = Vector2(-192, 0)
+texture = ExtResource("5_pm3a8")
+region_enabled = true
+region_rect = Rect2(752, 15, 64, 17)
+
+[node name="MainlevBuild2" type="Sprite2D" parent="Levels/0/StartRise/Sprites"]
+position = Vector2(-152, 0)
+texture = ExtResource("5_pm3a8")
+region_enabled = true
+region_rect = Rect2(816, 15, 24, 17)
+
+[node name="MainlevBuild3" type="Sprite2D" parent="Levels/0/StartRise/Sprites"]
+position = Vector2(-104, 0)
+texture = ExtResource("5_pm3a8")
+region_enabled = true
+region_rect = Rect2(768, 15, 72, 17)
+
+[node name="MainlevBuild4" type="Sprite2D" parent="Levels/0/StartRise/Sprites"]
+position = Vector2(-33, 0)
+texture = ExtResource("5_pm3a8")
+region_enabled = true
+region_rect = Rect2(768, 15, 72, 17)
+
+[node name="MainlevBuild5" type="Sprite2D" parent="Levels/0/StartRise/Sprites"]
+position = Vector2(104, 0)
+texture = ExtResource("5_pm3a8")
+region_enabled = true
+region_rect = Rect2(856, 15, 56, 17)
+
+[node name="MainlevBuild7" type="Sprite2D" parent="Levels/0/StartRise/Sprites"]
+position = Vector2(160, 0)
+texture = ExtResource("5_pm3a8")
+region_enabled = true
+region_rect = Rect2(856, 15, 56, 17)
+
+[node name="MainlevBuild8" type="Sprite2D" parent="Levels/0/StartRise/Sprites"]
+position = Vector2(160, 0)
+texture = ExtResource("5_pm3a8")
+region_enabled = true
+region_rect = Rect2(856, 15, 56, 17)
+
+[node name="MainlevBuild9" type="Sprite2D" parent="Levels/0/StartRise/Sprites"]
+position = Vector2(204, 0)
+texture = ExtResource("5_pm3a8")
+region_enabled = true
+region_rect = Rect2(888, 15, 40, 17)
+
+[node name="Crossthing" type="Sprite2D" parent="Levels/0/StartRise/Sprites"]
+position = Vector2(40, 0)
+texture = ExtResource("5_pm3a8")
+region_enabled = true
+region_rect = Rect2(832, 15, 80, 17)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Levels/0/StartRise"]
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_pm3a8")
 
 [node name="FallArea" type="Area2D" parent="Levels/0"]
@@ -193,6 +251,9 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Levels/0/FallArea"]
 position = Vector2(1127, -355)
 shape = SubResource("RectangleShape2D_lir5t")
+
+[node name="Collectible" parent="Levels/0" instance=ExtResource("15_hp3go")]
+position = Vector2(1808, -136)
 
 [node name="-1" parent="Levels" instance=ExtResource("4_ty7ck")]
 position = Vector2(3176, -368)

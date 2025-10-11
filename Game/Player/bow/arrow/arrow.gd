@@ -1,7 +1,11 @@
 extends RigidBody2D
 
+#multiple inheritance, which messes up inheritance strings, but eh if it works it works (until it doesn't...)
+##shared between all arrows
 var type = '' #gets type decided by player
 var has_hit = false
+##shared between all arrows
+
 
 func _ready() -> void:
 	match type:

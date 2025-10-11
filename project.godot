@@ -20,6 +20,10 @@ boot_splash/use_filter=false
 boot_splash/image="uid://cidg33qkog5qp"
 config/icon="uid://cidg33qkog5qp"
 
+[audio]
+
+buses/default_bus_layout="res://Music/default_bus_layout.tres"
+
 [autoload]
 
 Global="*res://global.gd"
