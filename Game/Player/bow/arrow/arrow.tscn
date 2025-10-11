@@ -78,3 +78,12 @@ bus = &"SFX"
 [node name="ArrowGoing" type="AudioStreamPlayer2D" parent="Sound"]
 stream = ExtResource("8_gup82")
 volume_db = -9.087
+
+[node name="TeleportCamera" type="Camera2D" parent="."]
+position = Vector2(8, 0)
+enabled = false
+zoom = Vector2(1.5, 1.5)
+process_callback = 0
+limit_left = 0
+limit_bottom = 0
+limit_smoothed = true

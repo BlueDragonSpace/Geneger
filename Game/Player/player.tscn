@@ -555,8 +555,10 @@ position = Vector2(0, -24)
 rotation = 0.052359883
 ignore_rotation = false
 zoom = Vector2(1.5, 1.5)
+process_callback = 0
 limit_left = 0
 limit_bottom = 0
+position_smoothing_enabled = true
 rotation_smoothing_enabled = true
 rotation_smoothing_speed = 1.0
 

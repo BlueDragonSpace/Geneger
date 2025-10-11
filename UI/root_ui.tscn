@@ -350,6 +350,12 @@ layout_mode = 2
 [node name="Type4" parent="Theme/HUD/ArrowType" instance=ExtResource("4_tgxrj")]
 layout_mode = 2
 
+[node name="Type5" parent="Theme/HUD/ArrowType" instance=ExtResource("4_tgxrj")]
+layout_mode = 2
+
+[node name="Type6" parent="Theme/HUD/ArrowType" instance=ExtResource("4_tgxrj")]
+layout_mode = 2
+
 [node name="Quiver" type="VBoxContainer" parent="Theme/HUD"]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 1

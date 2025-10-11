@@ -3,7 +3,10 @@ lalalalalalalalaalalala
 Must:
 	Art and Music...
 	
+	Separate moving/non-moving platform arrow
+	
 Should probably:
+	
 	Camera control for rooms
 	Ranbow Shader (refer to notebook: HSV(n,100,100) and so on)
 Want:
@@ -17,17 +20,15 @@ Want:
 	Jump Buffer (jump when you pressed the button too early)
 	Camera Peeking (hold down look down, hold up look up)
 Probably not:
-	
 	Collectible increases your draw speed, jump height...
 	Puzzle?
 	Arrow / Bow Enchanting?
-	Arrow as a platform?
 	Center hit for points (would entail a points system, and how to figure out distance from center...)
 
 Refactoring: 
 	Multiple inheritance for rigidbody arrows vs staticbody (platform) arrow
 	Player arrows could be charged based on position in bow, rather than time of animations
-	
+	Each arrow as individual scene
 
 Gimmicks?:
 	Upside-down functions really well...

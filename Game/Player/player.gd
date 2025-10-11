@@ -5,6 +5,7 @@ extends RigidBody2D
 @onready var UI = get_tree().get_first_node_in_group("UI")
 @onready var Art: AnimatedSprite2D = $Art
 @onready var Animate: AnimationPlayer = $Animate
+@onready var Camera: Camera2D = $Camera2D
 
 const SPEED = 5000.0 #basically Acceration, actually
 const MAX_SPEED = 200.0
@@ -47,11 +48,14 @@ var quiver = 0 #number of arrows you have
 @export var critable = false #if released this frame, does it crit? (exported for convenince of animation)
 var tension_release = true #when the player pulls bowstring back, but decides not to fire an arrow (change arrow type to release tension)
 
+var teleporting = false #used when teleporting with teleport arrow
+var teleport_defer = 0 #defers the camera for a few frames so it can catch up with the teleport
+
+
 const CROSSHAIR_RADIUS = 64 #max distance between player and crosshair
+#const CAMERA_PEEK = 30 #moving crosshair offsets camera
 
 signal arrow_released
-
-@onready var Camera: Camera2D = $Camera2D
 
 #endregion
 
@@ -67,9 +71,15 @@ func _process(_delta: float) -> void:
 		if Global.joypad:
 			$Crosshair.position = Global.joypad_right_stick * CROSSHAIR_RADIUS
 			weapon_pivot.look_at($Crosshair.global_position)
+			
 		else: 
 			var mouse = get_global_mouse_position()
 			weapon_pivot.look_at(mouse)
+			
+			#var weapon_direction = Vector2(cos(weapon_pivot.rotation), sin(weapon_pivot.rotation))
+			#var peek = clamp(global_position.distance_to(mouse), 0, CAMERA_PEEK)
+			#Camera.offset = weapon_direction * peek
+			
 	elif Input.is_action_just_pressed("advance") and is_dead:
 		get_tree().reload_current_scene()
 		
@@ -79,6 +89,7 @@ func _process(_delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	
+#region X-Axis Movement
 	##MOVEMENT on X-axis
 	var direction := Input.get_axis("move_left", "move_right")
 	
@@ -118,6 +129,8 @@ func _physics_process(delta: float) -> void:
 	if $RightWallbox.has_overlapping_bodies(): #aka is hitting a right wall
 		linear_velocity.x = clamp(linear_velocity.x, -INF, 0)
 	
+#endregion
+	
 	##MOVEMENT ON Y-AXIS
 	if Input.is_action_just_pressed("jump") and in_control:
 		if $Floorbox.has_overlapping_bodies():
@@ -125,7 +138,7 @@ func _physics_process(delta: float) -> void:
 			$Sound/Jump.play()
 	
 	#WEAPON STUFFF
-	if in_control and quiver > 0 and has_bow:
+	if in_control and quiver > 0 and has_bow and not teleporting:
 		if Input.is_action_just_pressed("charge_shot"):
 			weapon_animate.play("charge",-1, charge_speed_mult)
 			$Sound/BowLoading.play()
@@ -173,7 +186,11 @@ func _physics_process(delta: float) -> void:
 				5: #teleport
 					arrow = ARROW.instantiate()
 					arrow.type = 'teleport'
-					#arrow.modulate = Color
+					arrow.modulate = Color(1.0, 0.0, 0.573, 1.0)
+					
+					Camera.enabled = false
+					Camera.position_smoothing_enabled = false
+					teleporting = true
 				_: #default
 					arrow = ARROW.instantiate()
 					arrow.type = 'basic'
@@ -207,7 +224,25 @@ func _physics_process(delta: float) -> void:
 			
 			quiver -= 1
 			arrow_released.emit()
-
+	
+	if teleporting and Input.is_action_just_pressed("switch_arrow"): #teleport cancel
+		teleporting = false
+		Camera.enabled = true
+		
+		for child in $Projectiles.get_children():
+			child.queue_free()
+			
+		
+	if not teleporting and not Camera.enabled:
+		#defers position_smothing on the camera so it can catch up with the teleport
+		
+		if teleport_defer == 1:
+			Camera.enabled = true
+			Camera.position_smoothing_enabled =  true
+			teleport_defer = 0
+		
+		teleport_defer += 1
+		
 func teleport(new_position: Vector2) -> void:
 	
 	#thank you rando on the internet for teleporting RigidBody2D
@@ -216,6 +251,9 @@ func teleport(new_position: Vector2) -> void:
 	PhysicsServer2D.BODY_STATE_TRANSFORM,
 	Transform2D.IDENTITY.translated(new_position)
 	)
+	
+	teleporting = false
+	
 
 func _on_hitbox_body_entered(_body: Node2D) -> void:
 	is_dead = true
