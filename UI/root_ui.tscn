@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dwddtyw7h14sq"]
+[gd_scene load_steps=25 format=3 uid="uid://dwddtyw7h14sq"]
 
 [ext_resource type="Script" uid="uid://dkbyck6uumwp1" path="res://UI/root_ui.gd" id="1_vcau6"]
 [ext_resource type="FontFile" uid="uid://bhktyuykd5tsg" path="res://UI/fonts/Dunno.ttf" id="2_byxa4"]
@@ -6,7 +6,6 @@
 [ext_resource type="Shader" uid="uid://bjdto1ihsabnr" path="res://UI/shaders/chromaticaberation.gdshader" id="3_fkrse"]
 [ext_resource type="PackedScene" uid="uid://ds8ha74oyja1o" path="res://UI/ui_arrow.tscn" id="3_hh8yt"]
 [ext_resource type="Shader" uid="uid://dj7w18pp4a07k" path="res://UI/shaders/rainbow.gdshader" id="4_a8jcl"]
-[ext_resource type="PackedScene" uid="uid://fp8qbuv3sgpo" path="res://UI/type.tscn" id="4_tgxrj"]
 [ext_resource type="Texture2D" uid="uid://btf14masay0ud" path="res://placeholderAssets/forest.webp" id="5_tgxrj"]
 [ext_resource type="Shader" uid="uid://dowjq7a32fnaw" path="res://UI/shaders/posterize.gdshader" id="6_dx8dt"]
 [ext_resource type="AudioStream" uid="uid://bccior7xwwnqa" path="res://UI/sfx/change arrow.wav" id="9_5qh0s"]
@@ -15,6 +14,64 @@
 [sub_resource type="Theme" id="Theme_tgxrj"]
 default_font = ExtResource("2_byxa4")
 default_font_size = 32
+
+[sub_resource type="Animation" id="Animation_tgxrj"]
+resource_name = "hint_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.16666667, -0.16666667, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="Animation" id="Animation_7rgy6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1jtqv"]
+_data = {
+&"RESET": SubResource("Animation_7rgy6"),
+&"hint_in": SubResource("Animation_tgxrj")
+}
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fkrse"]
 shader = ExtResource("3_6ke0s")
@@ -338,24 +395,6 @@ offset_top = -80.32001
 offset_right = 500.0
 grow_vertical = 0
 
-[node name="Type" parent="Theme/HUD/ArrowType" instance=ExtResource("4_tgxrj")]
-layout_mode = 2
-
-[node name="Type2" parent="Theme/HUD/ArrowType" instance=ExtResource("4_tgxrj")]
-layout_mode = 2
-
-[node name="Type3" parent="Theme/HUD/ArrowType" instance=ExtResource("4_tgxrj")]
-layout_mode = 2
-
-[node name="Type4" parent="Theme/HUD/ArrowType" instance=ExtResource("4_tgxrj")]
-layout_mode = 2
-
-[node name="Type5" parent="Theme/HUD/ArrowType" instance=ExtResource("4_tgxrj")]
-layout_mode = 2
-
-[node name="Type6" parent="Theme/HUD/ArrowType" instance=ExtResource("4_tgxrj")]
-layout_mode = 2
-
 [node name="Quiver" type="VBoxContainer" parent="Theme/HUD"]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 1
@@ -402,12 +441,33 @@ text = "Current "
 [node name="Slash" type="Label" parent="Theme/HUD/TargetTracker"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "out of"
+text = " out of "
 
 [node name="Max" type="Label" parent="Theme/HUD/TargetTracker"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "M"
+
+[node name="Hint" type="Label" parent="Theme/HUD"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.05
+anchor_right = 0.5
+anchor_bottom = 0.05
+offset_left = -60.0
+offset_right = 60.0
+offset_bottom = 26.0
+grow_horizontal = 2
+text = "This is a hint"
+horizontal_alignment = 1
+
+[node name="HintAnimate" type="AnimationPlayer" parent="Theme/HUD/Hint"]
+libraries = {
+&"": SubResource("AnimationLibrary_1jtqv")
+}
 
 [node name="Death" type="ColorRect" parent="Theme"]
 visible = false

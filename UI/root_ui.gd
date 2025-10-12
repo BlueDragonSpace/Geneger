@@ -5,6 +5,8 @@ extends CanvasLayer
 @onready var ArrowType: HBoxContainer = $Theme/HUD/ArrowType
 @onready var Quiver: VBoxContainer = $Theme/HUD/Quiver
 @onready var Animate: AnimationPlayer = $Animate
+@onready var Hint: Label = $Theme/HUD/Hint
+var hinted = false #did hint this level 
 
 signal transitioning_out
 
@@ -58,6 +60,8 @@ func _ready() -> void:
 	$Theme/Start.visible = not started
 	Player.in_control = started #isn't this bad code or something idk lol
 	can_pause = started
+	
+	Hint.visible = false
 
 func delete_quiver_arrow() -> void:
 	Quiver.get_child(0).queue_free()
@@ -126,6 +130,8 @@ func add_arrow_type(sprite: Texture2D) -> void: #used by collectible class
 	
 func transition_in() -> void:
 	Animate.play("transition_in")
+	Hint.visible = false
+	hinted = false
 
 func transtion_out() -> void:
 	transitioning_out.emit()
@@ -134,6 +140,13 @@ func transtion_out() -> void:
 	$Theme/HUD/TargetTracker.visible = true
 	$Theme/HUD/TargetTracker/Current.text = "0"
 	$Theme/HUD/TargetTracker/Max.text = str(target_max)
+
+func hint(text: String) -> void:
+	
+	if not hinted:
+		hinted = true
+		Hint.text = text
+		Hint.get_node("HintAnimate").play("hint_in")
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()

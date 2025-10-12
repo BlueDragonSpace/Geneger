@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bs57norp6mjls"]
+
+[ext_resource type="Script" uid="uid://g8ou7ol4a5km" path="res://Game/Env/hint_area/hint_area.gd" id="1_th1br"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kes5u"]
+size = Vector2(16, 16)
+
+[node name="HintArea" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_th1br")
+hint = "awesome int"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_kes5u")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

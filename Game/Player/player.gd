@@ -86,6 +86,9 @@ func _process(_delta: float) -> void:
 	## DEBUG
 	if Input.is_action_just_pressed("debug2") and Global.dev_mode:
 		quiver += 1
+	if Input.is_action_just_pressed("debug5") and Global.dev_mode:
+		has_bow = true
+		weapon_pivot.visible = true
 
 func _physics_process(delta: float) -> void:
 	

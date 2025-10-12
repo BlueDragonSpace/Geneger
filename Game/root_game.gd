@@ -40,8 +40,8 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	
 	
-	
 	if Input.is_action_just_pressed("debug4") and Global.dev_mode:
+		#throws an error if not dead, could be useful to force a break
 		UI.transition_in()
 
 func next_level() -> void:

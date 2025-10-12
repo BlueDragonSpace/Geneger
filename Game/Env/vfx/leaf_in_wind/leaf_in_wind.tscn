@@ -1,0 +1,80 @@
+[gd_scene load_steps=12 format=3 uid="uid://i46l7cqgab01"]
+
+[ext_resource type="Texture2D" uid="uid://dyx4psf5tetyk" path="res://Game/Env/vfx/leaf_in_wind/leafWind.png" id="1_vxuti"]
+[ext_resource type="Script" uid="uid://5no1hv1lqtyb" path="res://Game/Env/vfx/leaf_in_wind/leaf_in_wind.gd" id="2_vxuti"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tg0xq"]
+atlas = ExtResource("1_vxuti")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yp13v"]
+atlas = ExtResource("1_vxuti")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xjoj"]
+atlas = ExtResource("1_vxuti")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h81db"]
+atlas = ExtResource("1_vxuti")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4l5yx"]
+atlas = ExtResource("1_vxuti")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6amv1"]
+atlas = ExtResource("1_vxuti")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7in6t"]
+atlas = ExtResource("1_vxuti")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sfai8"]
+atlas = ExtResource("1_vxuti")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_irpxw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tg0xq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yp13v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6xjoj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h81db")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4l5yx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6amv1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7in6t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sfai8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Leaf" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_irpxw")
+autoplay = "default"
+frame = 4
+frame_progress = 0.41679624
+script = ExtResource("2_vxuti")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

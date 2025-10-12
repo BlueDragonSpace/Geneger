@@ -1,13 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://d2uuwd3fl1c72"]
+[gd_scene load_steps=3 format=3 uid="uid://d2uuwd3fl1c72"]
 
 [ext_resource type="PackedScene" uid="uid://id3v6canaqmk" path="res://Game/root_game.tscn" id="1_pyidc"]
 [ext_resource type="PackedScene" uid="uid://dwddtyw7h14sq" path="res://UI/root_ui.tscn" id="2_vvh5c"]
-[ext_resource type="PackedScene" uid="uid://ptir6kl4artn" path="res://Music/root_music.tscn" id="3_vvh5c"]
 
 [node name="Root" type="Node"]
 
 [node name="RootGame" parent="." instance=ExtResource("1_pyidc")]
 
 [node name="RootUI" parent="." instance=ExtResource("2_vvh5c")]
-
-[node name="RootMusic" parent="." instance=ExtResource("3_vvh5c")]

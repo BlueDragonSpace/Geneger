@@ -4,13 +4,11 @@ Must:
 	Art and Music...
 	
 	Separate moving/non-moving platform arrow
-	
 Should probably:
 	
 	Camera control for rooms
 	Ranbow Shader (refer to notebook: HSV(n,100,100) and so on)
 Want:
-	Platform Arrow, Teleport Arrow
 	Arrow Guide: Arrow Dot Path Midflight (Ballistics Plugin?)
 	Multi-shot + Rapid fire lol
 	Bomb Arrow, Key Arrow?

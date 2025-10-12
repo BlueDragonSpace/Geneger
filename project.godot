@@ -27,6 +27,7 @@ buses/default_bus_layout="res://Music/default_bus_layout.tres"
 [autoload]
 
 Global="*res://global.gd"
+Music="*res://Music/root_music.tscn"
 
 [display]
 
