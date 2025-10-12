@@ -8,6 +8,8 @@ extends Node2D
 #### [spawn point, num targets, quiver] ****** HIGHLY IMPORTANTTTTTTT
 var lvl_index := []
 
+@onready var Background: Node2D = $Background
+
 signal envSwitched
 var envSwitch = false: #is the environmental switch on or off
 	set(new):
@@ -33,8 +35,11 @@ func _ready() -> void:
 	UI.connect("has_started", start_rise)
 	
 	$Player/Camera2D.reset_smoothing()
+	
 
 func _process(_delta: float) -> void:
+	
+	
 	
 	if Input.is_action_just_pressed("debug4") and Global.dev_mode:
 		UI.transition_in()

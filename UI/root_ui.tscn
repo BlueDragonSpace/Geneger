@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" uid="uid://dkbyck6uumwp1" path="res://UI/root_ui.gd" id="1_vcau6"]
 [ext_resource type="FontFile" uid="uid://bhktyuykd5tsg" path="res://UI/fonts/Dunno.ttf" id="2_byxa4"]
-[ext_resource type="Texture2D" uid="uid://5egvmd37rljr" path="res://icon.svg" id="2_qoywv"]
 [ext_resource type="Shader" uid="uid://ct11oysvt83f4" path="res://UI/shaders/pixellizer.gdshader" id="3_6ke0s"]
 [ext_resource type="Shader" uid="uid://bjdto1ihsabnr" path="res://UI/shaders/chromaticaberation.gdshader" id="3_fkrse"]
 [ext_resource type="PackedScene" uid="uid://ds8ha74oyja1o" path="res://UI/ui_arrow.tscn" id="3_hh8yt"]
 [ext_resource type="Shader" uid="uid://dj7w18pp4a07k" path="res://UI/shaders/rainbow.gdshader" id="4_a8jcl"]
 [ext_resource type="PackedScene" uid="uid://fp8qbuv3sgpo" path="res://UI/type.tscn" id="4_tgxrj"]
+[ext_resource type="Texture2D" uid="uid://btf14masay0ud" path="res://placeholderAssets/forest.webp" id="5_tgxrj"]
 [ext_resource type="Shader" uid="uid://dowjq7a32fnaw" path="res://UI/shaders/posterize.gdshader" id="6_dx8dt"]
 [ext_resource type="AudioStream" uid="uid://bccior7xwwnqa" path="res://UI/sfx/change arrow.wav" id="9_5qh0s"]
 [ext_resource type="AudioStream" uid="uid://cnxpmw5qe5dg" path="res://UI/sfx/menu dissipate.wav" id="10_byxa4"]
@@ -402,7 +402,7 @@ text = "Current "
 [node name="Slash" type="Label" parent="Theme/HUD/TargetTracker"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "/"
+text = "out of"
 
 [node name="Max" type="Label" parent="Theme/HUD/TargetTracker"]
 layout_mode = 2
@@ -567,7 +567,8 @@ anchor_left = -1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_qoywv")
+texture = ExtResource("5_tgxrj")
+expand_mode = 2
 
 [node name="Shaders" type="Control" parent="Theme"]
 visible = false

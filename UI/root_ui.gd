@@ -119,9 +119,9 @@ func _process(_delta: float) -> void:
 
 	
 
-func add_arrow_type() -> void: #this function is not used??
+func add_arrow_type(sprite: Texture2D) -> void: #used by collectible class
 	var child = TYPE.instantiate()
-	#child.modulate = Color(randi_range(0,255),randi_range(0,255),randi_range(0,255))
+	child.texture = sprite
 	ArrowType.add_child(child)
 	
 func transition_in() -> void:

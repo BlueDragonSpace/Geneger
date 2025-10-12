@@ -22,9 +22,9 @@ func _on_body_entered(body: Node2D) -> void:
 		match item:
 			"Bow":
 				body.has_bow = true
-				UI.add_arrow_type()
+				UI.add_arrow_type(image)
 			"Arrow":
-				UI.add_arrow_type()
+				UI.add_arrow_type(image)
 			_:
 				print('no item defined')
 		queue_free()

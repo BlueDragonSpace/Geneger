@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://id3v6canaqmk"]
+[gd_scene load_steps=33 format=4 uid="uid://id3v6canaqmk"]
 
 [ext_resource type="Script" uid="uid://bic8ps4anxoj6" path="res://Game/root_game.gd" id="1_8edvr"]
 [ext_resource type="Texture2D" uid="uid://5egvmd37rljr" path="res://icon.svg" id="1_p38nb"]
@@ -12,10 +12,13 @@
 [ext_resource type="PackedScene" uid="uid://baegsno0bx0kg" path="res://Game/Env/switch/switch.tscn" id="7_516lo"]
 [ext_resource type="Texture2D" uid="uid://clfc6orol40tt" path="res://Game/Player/bow/arrow/pixelArrow.png" id="7_bhcbk"]
 [ext_resource type="PackedScene" uid="uid://i63netiq1kep" path="res://Game/Env/bouncy/bouncy.tscn" id="7_kkmom"]
+[ext_resource type="Texture2D" uid="uid://cidg33qkog5qp" path="res://Game/Player/bow/minecraftBow.png" id="7_lir5t"]
 [ext_resource type="PackedScene" uid="uid://qce2wbats8ba" path="res://Game/Env/switch/switch_env/switch_env.tscn" id="8_b672w"]
 [ext_resource type="PackedScene" uid="uid://d1s3txry2rr13" path="res://Game/Env/rope/rope.tscn" id="9_6vadt"]
 [ext_resource type="PackedScene" uid="uid://c6m88ml6xvqwn" path="res://Game/Env/vfx/firefly/firefly.tscn" id="10_ty7ck"]
 [ext_resource type="PackedScene" uid="uid://jwplg7gbb6re" path="res://Game/Env/collectible/collectible.tscn" id="15_hp3go"]
+[ext_resource type="Texture2D" uid="uid://dej1oc8sneyxd" path="res://placeholderAssets/l0_hills1.png" id="18_0vw3j"]
+[ext_resource type="Texture2D" uid="uid://fnlci7h5dg50" path="res://placeholderAssets/l1_hills1.png" id="19_2lrfy"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fudmu"]
 
@@ -152,9 +155,36 @@ size = Vector2(128, 20)
 [node name="RootGame" type="Node2D" groups=["Game"]]
 script = ExtResource("1_8edvr")
 
+[node name="Background" type="Node2D" parent="."]
+position = Vector2(0, 400)
+
+[node name="Parallax2D2" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.08, 0)
+repeat_size = Vector2(512, 0)
+repeat_times = 25
+limit_begin = Vector2(0, -10000000)
+limit_end = Vector2(10000000, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D2"]
+position = Vector2(0, 24)
+scale = Vector2(8, 8)
+texture = ExtResource("18_0vw3j")
+
+[node name="Parallax2D" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.05, 0)
+repeat_size = Vector2(512, 0)
+repeat_times = 25
+limit_begin = Vector2(0, -10000000)
+limit_end = Vector2(10000000, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D"]
+position = Vector2(0, 40)
+scale = Vector2(8, 8)
+texture = ExtResource("19_2lrfy")
+
 [node name="Player" parent="." instance=ExtResource("2_fudmu")]
 unique_name_in_owner = true
-position = Vector2(1848, -120)
+position = Vector2(168, -88)
 collision_mask = 7
 arrow_impulse = 1200.0
 
@@ -253,7 +283,12 @@ position = Vector2(1127, -355)
 shape = SubResource("RectangleShape2D_lir5t")
 
 [node name="Collectible" parent="Levels/0" instance=ExtResource("15_hp3go")]
-position = Vector2(1808, -136)
+position = Vector2(1195, -72)
+
+[node name="Collectible2" parent="Levels/0" instance=ExtResource("15_hp3go")]
+position = Vector2(1246, -80)
+image = ExtResource("7_lir5t")
+item = "Arrow"
 
 [node name="-1" parent="Levels" instance=ExtResource("4_ty7ck")]
 position = Vector2(3176, -368)

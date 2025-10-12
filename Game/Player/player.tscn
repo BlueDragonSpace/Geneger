@@ -552,7 +552,7 @@ visible = false
 position = Vector2(0, -24)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-rotation = 0.052359883
+rotation = 0.05235988
 ignore_rotation = false
 zoom = Vector2(1.5, 1.5)
 process_callback = 0

@@ -228,6 +228,7 @@ func _physics_process(delta: float) -> void:
 	if teleporting and Input.is_action_just_pressed("switch_arrow"): #teleport cancel
 		teleporting = false
 		Camera.enabled = true
+		Camera.position_smoothing_enabled =  true
 		
 		for child in $Projectiles.get_children():
 			child.queue_free()
