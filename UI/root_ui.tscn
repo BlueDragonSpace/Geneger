@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dwddtyw7h14sq"]
+[gd_scene load_steps=26 format=3 uid="uid://dwddtyw7h14sq"]
 
 [ext_resource type="Script" uid="uid://dkbyck6uumwp1" path="res://UI/root_ui.gd" id="1_vcau6"]
 [ext_resource type="FontFile" uid="uid://bhktyuykd5tsg" path="res://UI/fonts/Dunno.ttf" id="2_byxa4"]
@@ -6,6 +6,7 @@
 [ext_resource type="Shader" uid="uid://bjdto1ihsabnr" path="res://UI/shaders/chromaticaberation.gdshader" id="3_fkrse"]
 [ext_resource type="PackedScene" uid="uid://ds8ha74oyja1o" path="res://UI/ui_arrow.tscn" id="3_hh8yt"]
 [ext_resource type="Shader" uid="uid://dj7w18pp4a07k" path="res://UI/shaders/rainbow.gdshader" id="4_a8jcl"]
+[ext_resource type="PackedScene" uid="uid://fp8qbuv3sgpo" path="res://UI/type.tscn" id="4_tgxrj"]
 [ext_resource type="Texture2D" uid="uid://btf14masay0ud" path="res://placeholderAssets/forest.webp" id="5_tgxrj"]
 [ext_resource type="Shader" uid="uid://dowjq7a32fnaw" path="res://UI/shaders/posterize.gdshader" id="6_dx8dt"]
 [ext_resource type="AudioStream" uid="uid://bccior7xwwnqa" path="res://UI/sfx/change arrow.wav" id="9_5qh0s"]
@@ -394,6 +395,21 @@ anchor_bottom = 0.975
 offset_top = -80.32001
 offset_right = 500.0
 grow_vertical = 0
+
+[node name="Type" parent="Theme/HUD/ArrowType" instance=ExtResource("4_tgxrj")]
+layout_mode = 2
+
+[node name="Type2" parent="Theme/HUD/ArrowType" instance=ExtResource("4_tgxrj")]
+layout_mode = 2
+
+[node name="Type3" parent="Theme/HUD/ArrowType" instance=ExtResource("4_tgxrj")]
+layout_mode = 2
+
+[node name="Type4" parent="Theme/HUD/ArrowType" instance=ExtResource("4_tgxrj")]
+layout_mode = 2
+
+[node name="Type5" parent="Theme/HUD/ArrowType" instance=ExtResource("4_tgxrj")]
+layout_mode = 2
 
 [node name="Quiver" type="VBoxContainer" parent="Theme/HUD"]
 custom_minimum_size = Vector2(100, 40)

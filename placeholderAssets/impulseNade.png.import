@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ca8na2kyroupw"
-path="res://.godot/imported/Firefly.png-c65d743ee7fd15c3e316d69408b46db7.ctex"
+uid="uid://xj4d6nuc1yqx"
+path="res://.godot/imported/impulseNade.png-457026351be24d6547e4b65236fd44b5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Game/Env/wind/Firefly.png"
-dest_files=["res://.godot/imported/Firefly.png-c65d743ee7fd15c3e316d69408b46db7.ctex"]
+source_file="res://placeholderAssets/impulseNade.png"
+dest_files=["res://.godot/imported/impulseNade.png-457026351be24d6547e4b65236fd44b5.ctex"]
 
 [params]
 

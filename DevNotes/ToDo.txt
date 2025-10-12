@@ -38,7 +38,7 @@ Mechanics:
 	Rope
 	Switch-hit
 	Wind
-	Arrows: Anti-Grav, Ghost, Impulse
+	Arrows: Anti-Grav, Ghost, Impulse, Platform, Teleport
 
 Mood...:
 	Peaceful, Celeste Golden Feather Mix

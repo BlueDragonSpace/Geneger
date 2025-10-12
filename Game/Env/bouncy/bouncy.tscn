@@ -23,13 +23,6 @@ texture = ExtResource("1_usde3")
 position = Vector2(0, 1)
 shape = ExtResource("3_nnpcj")
 
-[node name="Label" type="Label" parent="."]
-offset_left = -40.0
-offset_top = -40.0
-offset_right = 50.0
-offset_bottom = -17.0
-text = "I'm bouncy!"
-
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 13
