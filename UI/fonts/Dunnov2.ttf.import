@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://bhktyuykd5tsg"
-path="res://.godot/imported/Dunno.ttf-fa8f89a45d9abcf631dfa4ec4842d946.fontdata"
+uid="uid://cbwgi3g6655ey"
+path="res://.godot/imported/Dunnov2.ttf-f75d2905f70d678275f49e5362cb8977.fontdata"
 
 [deps]
 
-source_file="res://UI/fonts/Dunno.ttf"
-dest_files=["res://.godot/imported/Dunno.ttf-fa8f89a45d9abcf631dfa4ec4842d946.fontdata"]
+source_file="res://UI/fonts/Dunnov2.ttf"
+dest_files=["res://.godot/imported/Dunnov2.ttf-f75d2905f70d678275f49e5362cb8977.fontdata"]
 
 [params]
 

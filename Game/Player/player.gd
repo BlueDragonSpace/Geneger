@@ -260,19 +260,23 @@ func teleport(new_position: Vector2) -> void:
 	
 
 func _on_hitbox_body_entered(_body: Node2D) -> void:
-	is_dead = true
-	in_control = false
-	set_deferred("lock_rotation", false)
-	set_deferred("angular_velocity", randf_range(-1,1) * PI * 10)
-	$Sound/PlayerDead.play()
-	UI.Animate.play("death_in") 
 	
-	#sets the Camera to stop following the player
-	Camera.position = Camera.get_screen_center_position()
-	var CameraNode = Node.new()
-	add_child(CameraNode)
-	Camera.reparent(CameraNode, false) #makes the Camera parented to a default Node, so it stops following position
+	if not teleporting:
+		
+		is_dead = true
+		in_control = false
+		set_deferred("lock_rotation", false)
+		set_deferred("angular_velocity", randf_range(-1,1) * PI * 10)
+		$Sound/PlayerDead.play()
+		UI.Animate.play("death_in") 
+		
+		#sets the Camera to stop following the player
+		Camera.position = Camera.get_screen_center_position()
+		var CameraNode = Node.new()
+		add_child(CameraNode)
+		Camera.reparent(CameraNode, false) #makes the Camera parented to a default Node, so it stops following position
 	
+	#this also creates a case where when the player misses a teleport shot, and both are in the void, they live forever...
 
 func _on_floorbox_body_entered(_body: Node2D) -> void:
 	$Floorbox/LeftFloorParticle.emitting = true

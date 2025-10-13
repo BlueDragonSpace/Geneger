@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://i63netiq1kep"]
 
 [ext_resource type="Script" uid="uid://6dhgiiuq15n6" path="res://Game/Env/bouncy/bouncy.gd" id="1_5shoo"]
-[ext_resource type="Texture2D" uid="uid://5egvmd37rljr" path="res://icon.svg" id="1_usde3"]
+[ext_resource type="Texture2D" uid="uid://n4r58v5udfck" path="res://placeholderAssets/trampoline.png" id="2_5shoo"]
 [ext_resource type="Shape2D" uid="uid://cwnt4paoabl0o" path="res://Game/Env/bouncy/bouncyHitbox.tres" id="3_nnpcj"]
 [ext_resource type="AudioStream" uid="uid://dxdsvytu38b23" path="res://Game/Env/bouncy/arrow bounce.wav" id="4_7k6dj"]
 
@@ -14,10 +14,10 @@ collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_4bpsl")
 script = ExtResource("1_5shoo")
 
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(3.8146973e-06, 3.8146973e-06)
-scale = Vector2(2.25, 0.12500006)
-texture = ExtResource("1_usde3")
+[node name="Trampoline" type="Sprite2D" parent="."]
+position = Vector2(-1.2874603e-05, 0.9999962)
+scale = Vector2(1.1054546, 0.17753622)
+texture = ExtResource("2_5shoo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)

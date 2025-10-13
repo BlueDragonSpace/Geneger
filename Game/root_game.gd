@@ -58,8 +58,8 @@ func next_level() -> void:
 
 #start game functions
 func start_rise() -> void:
-	$"Levels/0/StartRise/AnimationPlayer".play("rise")
+	$"Levels/Start/StartRise/AnimationPlayer".play("rise")
 	$Player/Camera2D.position_smoothing_enabled = true
 
 func _on_fall_area_body_entered(_body: Node2D) -> void:
-	$"Levels/0/StartRise/AnimationPlayer".play_backwards("fall") #plays fall backwards
+	$"Levels/Start/StartRise/AnimationPlayer".play_backwards("fall") #plays fall backwards
