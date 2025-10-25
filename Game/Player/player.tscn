@@ -1,8 +1,9 @@
-[gd_scene load_steps=41 format=3 uid="uid://bptenx8dxjug3"]
+[gd_scene load_steps=60 format=3 uid="uid://bptenx8dxjug3"]
 
 [ext_resource type="Texture2D" uid="uid://5egvmd37rljr" path="res://icon.svg" id="1_m57qa"]
 [ext_resource type="Script" uid="uid://ch7ydpdriskk3" path="res://Game/Player/player.gd" id="1_s3asc"]
 [ext_resource type="Texture2D" uid="uid://d0x1yafsrllxq" path="res://Game/Player/bow/CritStar.png" id="3_letr6"]
+[ext_resource type="Texture2D" uid="uid://dp1hqnlg3nrth" path="res://Game/Player/bow/bow.png" id="3_qwver"]
 [ext_resource type="Texture2D" uid="uid://cidg33qkog5qp" path="res://Game/Player/bow/minecraftBow.png" id="3_vytja"]
 [ext_resource type="Texture2D" uid="uid://nbm2gg4i2vth" path="res://Game/Player/bow/crosshair.png" id="5_q0m6d"]
 [ext_resource type="AudioStream" uid="uid://dd222qx2g5645" path="res://Game/Player/sfx/jump.wav" id="5_segth"]
@@ -64,85 +65,200 @@ animations = [{
 radius = 8.0
 height = 32.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgbxf"]
+atlas = ExtResource("3_qwver")
+region = Rect2(39, 0, 39, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xrxgx"]
+atlas = ExtResource("3_qwver")
+region = Rect2(78, 0, 39, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dar1l"]
+atlas = ExtResource("3_qwver")
+region = Rect2(117, 0, 39, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bt2hs"]
+atlas = ExtResource("3_qwver")
+region = Rect2(156, 0, 39, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s14fl"]
+atlas = ExtResource("3_qwver")
+region = Rect2(195, 0, 39, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgx7e"]
+atlas = ExtResource("3_qwver")
+region = Rect2(0, 44, 39, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4sti"]
+atlas = ExtResource("3_qwver")
+region = Rect2(39, 44, 39, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjnfe"]
+atlas = ExtResource("3_qwver")
+region = Rect2(78, 44, 39, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17fuy"]
+atlas = ExtResource("3_qwver")
+region = Rect2(0, 0, 39, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2r01l"]
+atlas = ExtResource("3_qwver")
+region = Rect2(78, 44, 39, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_me1ax"]
+atlas = ExtResource("3_qwver")
+region = Rect2(117, 44, 39, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uws67"]
+atlas = ExtResource("3_qwver")
+region = Rect2(156, 44, 39, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e5t7e"]
+atlas = ExtResource("3_qwver")
+region = Rect2(195, 44, 39, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hjses"]
+atlas = ExtResource("3_qwver")
+region = Rect2(0, 88, 39, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsmka"]
+atlas = ExtResource("3_qwver")
+region = Rect2(39, 88, 39, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjwnk"]
+atlas = ExtResource("3_qwver")
+region = Rect2(78, 88, 39, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rrpjo"]
+atlas = ExtResource("3_qwver")
+region = Rect2(117, 88, 39, 44)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_62ylk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgbxf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xrxgx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dar1l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bt2hs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s14fl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pgx7e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c4sti")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjnfe")
+}],
+"loop": false,
+"name": &"charge",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_17fuy")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2r01l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_me1ax")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uws67")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e5t7e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hjses")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsmka")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yjwnk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rrpjo")
+}],
+"loop": false,
+"name": &"release",
+"speed": 20.0
+}]
+
 [sub_resource type="Animation" id="Animation_letr6"]
 length = 0.001
-tracks/0/type = "bezier"
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position:x")
+tracks/0/path = NodePath("../../..:critable")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(2.3561945, -0.05, 0, 0.05, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../../..:critable")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
 }
-
-[sub_resource type="Animation" id="Animation_s3asc"]
-resource_name = "charge"
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -38.4, -0.25, 6.4, 0, 0),
-"times": PackedFloat32Array(0, 1)
-}
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:position:y")
+tracks/1/path = NodePath(".:position:x")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0, 0),
-"times": PackedFloat32Array(0, 1)
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0.0009999999)
 }
-tracks/2/type = "method"
+tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../CritStar")
+tracks/2/path = NodePath("..:position:x")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(8, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0.0009999999)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("..:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0.0009999999)
+}
+
+[sub_resource type="Animation" id="Animation_s3asc"]
+resource_name = "charge"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CritStar")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
 "times": PackedFloat32Array(0.73333335),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -150,53 +266,70 @@ tracks/2/keys = {
 "method": &"play"
 }]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../../..:critable")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../..:critable")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.96666664, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"charge", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1.4305115e-06, -0.25, 0, 0.25, 0, -10, -0.16666667, 1.666667, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
 
 [sub_resource type="Animation" id="Animation_vytja"]
 resource_name = "release"
 length = 0.1
-tracks/0/type = "bezier"
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position:x")
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(2),
-"points": PackedFloat32Array(-9.536743e-07, -0.016666668, -6.4000006, 0, 0),
-"times": PackedFloat32Array(0.1)
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"release", 1.0, false],
+"method": &"play"
+}]
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:position:y")
+tracks/1/path = NodePath(".:position:x")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(2),
-"points": PackedFloat32Array(0, -0.016666668, 0, 0, 0),
-"times": PackedFloat32Array(0.1)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(2, 0),
-"points": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(-10, -0.05, 0, 0.05, 0, 0, -0.016666668, -1.6666667, 0, 0),
 "times": PackedFloat32Array(0, 0.1)
 }
 
@@ -442,23 +575,24 @@ shape = SubResource("CapsuleShape2D_s3asc")
 [node name="WeaponPivot" type="Node2D" parent="."]
 
 [node name="Bow" type="Node2D" parent="WeaponPivot"]
-position = Vector2(20, 0)
-scale = Vector2(0.3125, 0.062499996)
+z_index = 2
+position = Vector2(8, 0)
+scale = Vector2(0.75, 0.75)
 
-[node name="Art" type="Sprite2D" parent="WeaponPivot/Bow"]
-rotation = 2.3561945
-scale = Vector2(0.33391055, 1.4687403)
-texture = ExtResource("3_vytja")
+[node name="BowArt" type="AnimatedSprite2D" parent="WeaponPivot/Bow"]
+sprite_frames = SubResource("SpriteFrames_62ylk")
+animation = &"charge"
+autoplay = "idle"
 
 [node name="WeaponAnimate" type="AnimationPlayer" parent="WeaponPivot/Bow"]
-root_node = NodePath("../Art")
+root_node = NodePath("../BowArt")
 libraries = {
 &"": SubResource("AnimationLibrary_segth")
 }
 
 [node name="CritStar" type="AnimatedSprite2D" parent="WeaponPivot/Bow"]
-position = Vector2(-38.400005, 0)
-scale = Vector2(5.12, 26.100004)
+position = Vector2(16, 0)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_wlpas")
 animation = &"shine"
 frame = 9
@@ -599,5 +733,6 @@ stream = ExtResource("10_q0m6d")
 volume_db = 6.059
 bus = &"SFX"
 
+[connection signal="animation_finished" from="WeaponPivot/Bow/BowArt" to="." method="_on_bow_art_animation_finished"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_entered" from="Floorbox" to="." method="_on_floorbox_body_entered"]

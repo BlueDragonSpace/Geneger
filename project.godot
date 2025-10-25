@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Genenger"
 config/description="Physics-based Bow Game!"
-config/version="1.0.0"
+config/version="1.0.2"
 run/main_scene="uid://d2uuwd3fl1c72"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 boot_splash/bg_color=Color(0.24673039, 5.7865196e-05, 0.25970915, 1)

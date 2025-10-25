@@ -60,8 +60,12 @@ signal arrow_released
 #endregion
 
 func _ready() -> void:
-	weapon_pivot.visible = false
 	$Crosshair.visible = false
+	
+	if Global.checkpoint != 0:
+		weapon_pivot.visible = true
+	else:
+		weapon_pivot.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -167,12 +171,12 @@ func _physics_process(delta: float) -> void:
 					arrow.type = 'antiGrav'
 					arrow.gravity_scale = 0
 					base_impulse /= 3
-					arrow.modulate = Color(0.0, 1.0, 0.0, 1.0)
+					#arrow.modulate = Color(0.0, 1.0, 0.0, 1.0)
 				2: #ghost
 					arrow = ARROW.instantiate()
 					arrow.type = 'ghost'
 					base_impulse /= 3
-					arrow.modulate = Color(0.0, 0.0, 0.0, 0.5)
+					#arrow.modulate = Color(0.0, 0.0, 0.0, 0.5)
 					arrow.collision_mask = 0 #doesn't collide with anything (note that this must be changed back)
 				3: #impulse
 					arrow = ARROW.instantiate()
@@ -184,12 +188,12 @@ func _physics_process(delta: float) -> void:
 					arrow = PLATFORM_ARROW.instantiate()
 					arrow.type = 'platform'
 					base_impulse /= 6
-					arrow.modulate = Color(1.0, 1.0, 0.0, 1.0)
+					#arrow.modulate = Color(1.0, 1.0, 0.0, 1.0)
 					arrow.collision_layer = 10 #layer 2 and 4, meaning it is also a platform
 				5: #teleport
 					arrow = ARROW.instantiate()
 					arrow.type = 'teleport'
-					arrow.modulate = Color(1.0, 0.0, 0.573, 1.0)
+					#arrow.modulate = Color(1.0, 0.0, 0.573, 1.0)
 					
 					Camera.enabled = false
 					Camera.position_smoothing_enabled = false
@@ -213,7 +217,13 @@ func _physics_process(delta: float) -> void:
 				arrow.apply_impulse(arrow_impulse * base_impulse)
 			else:
 				arrow.strange_velocity = arrow_impulse * base_impulse
-				arrow.position += (arrow.platform_width / 4) * base_impulse #makes platform spawn a little bit away
+				arrow.position += (arrow.platform_width / 2) * base_impulse #makes platform spawn a little bit away
+				
+				#bad pass note in REFACTORING
+				if not critable:
+					arrow.start_death(weapon_animate.current_animation_position)
+				else:
+					arrow.start_death(weapon_animate.current_animation_position / 1.2)
 			
 			$Projectiles.add_child(arrow)
 			if $Projectiles.get_child_count() > projectile_count:
@@ -268,7 +278,7 @@ func _on_hitbox_body_entered(_body: Node2D) -> void:
 		set_deferred("lock_rotation", false)
 		set_deferred("angular_velocity", randf_range(-1,1) * PI * 10)
 		$Sound/PlayerDead.play()
-		UI.Animate.play("death_in") 
+		UI.Animate.play("death_in")
 		
 		#sets the Camera to stop following the player
 		Camera.position = Camera.get_screen_center_position()
@@ -282,3 +292,7 @@ func _on_floorbox_body_entered(_body: Node2D) -> void:
 	$Floorbox/LeftFloorParticle.emitting = true
 	$Floorbox/RightFloorParticle.emitting = true
 	$Sound/HitGround.play()
+
+func _on_bow_art_animation_finished() -> void:
+	if $WeaponPivot/Bow/BowArt.get_animation() == 'release':
+		$WeaponPivot/Bow/BowArt.play("idle")

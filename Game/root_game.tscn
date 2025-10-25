@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=4 uid="uid://id3v6canaqmk"]
+[gd_scene load_steps=65 format=4 uid="uid://id3v6canaqmk"]
 
 [ext_resource type="Script" uid="uid://bic8ps4anxoj6" path="res://Game/root_game.gd" id="1_8edvr"]
 [ext_resource type="Texture2D" uid="uid://5egvmd37rljr" path="res://icon.svg" id="1_p38nb"]
@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://b74p3aywoe3kr" path="res://Game/Env/target/target.tscn" id="3_jpyr4"]
 [ext_resource type="PackedScene" uid="uid://076yl7mxetv0" path="res://Game/Env/wind/wind.tscn" id="4_4bpsl"]
 [ext_resource type="PackedScene" uid="uid://vyr38qq7mxxn" path="res://Game/Env/level/base_level.tscn" id="4_ty7ck"]
-[ext_resource type="Texture2D" uid="uid://dqaqyxk6yehi3" path="res://Game/Env/mainlev_build.png" id="5_pm3a8"]
-[ext_resource type="TileSet" uid="uid://c0bsqdhbog21c" path="res://Game/Env/FillerTilemap.tres" id="6_bhcbk"]
+[ext_resource type="Texture2D" uid="uid://dqaqyxk6yehi3" path="res://Game/Env/tilemaps/mainlev_build.png" id="5_pm3a8"]
+[ext_resource type="TileSet" uid="uid://c0bsqdhbog21c" path="res://Game/Env/tilemaps/FillerTilemap.tres" id="6_bhcbk"]
 [ext_resource type="PackedScene" uid="uid://bif7dfxiod6vm" path="res://Game/Env/killzone/killzone.tscn" id="6_cwq06"]
 [ext_resource type="PackedScene" uid="uid://baegsno0bx0kg" path="res://Game/Env/switch/switch.tscn" id="7_516lo"]
 [ext_resource type="Texture2D" uid="uid://clfc6orol40tt" path="res://Game/Player/bow/arrow/pixelArrow.png" id="7_bhcbk"]
@@ -30,6 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://dub8i1pyjfy1s" path="res://placeholderAssets/uverbourd.png" id="26_05wh3"]
 [ext_resource type="Texture2D" uid="uid://dx28x5pse4j70" path="res://placeholderAssets/enderPearl.png" id="28_fqq54"]
 [ext_resource type="Texture2D" uid="uid://be706k1hp1kr" path="res://placeholderAssets/thatsallfolks.webp" id="29_x86oc"]
+[ext_resource type="PackedScene" uid="uid://bxokuxw453jt8" path="res://Game/Env/vfx/bush/bush.tscn" id="30_5aewc"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fudmu"]
 
@@ -603,9 +604,10 @@ texture = ExtResource("19_2lrfy")
 
 [node name="Player" parent="." instance=ExtResource("2_fudmu")]
 unique_name_in_owner = true
-position = Vector2(768, 136)
+position = Vector2(1520, -142)
 collision_mask = 7
 arrow_impulse = 1200.0
+has_bow = true
 
 [node name="KillFloor" type="StaticBody2D" parent="."]
 position = Vector2(0, 768)
@@ -840,7 +842,7 @@ rotation = 8.377581
 [node name="HintArea" parent="Levels/IcePlats" instance=ExtResource("11_2lrfy")]
 position = Vector2(224, 82)
 scale = Vector2(8.449105, -4.249216)
-hint = "And don't worry about arrows, press 2 for more ;))"
+hint = "And don't worry about arrows, press 2 for more"
 
 [node name="Wind" parent="Levels" instance=ExtResource("4_ty7ck")]
 position = Vector2(7704, -362)
@@ -864,8 +866,8 @@ rotation = -2.3561945
 [node name="Wind" parent="Levels/Wind" instance=ExtResource("4_4bpsl")]
 position = Vector2(368, 48)
 rotation = -3.1415925
-gravity_point_center = Vector2(-1, -1.509958e-07)
-gravity_direction = Vector2(-1, -1.509958e-07)
+gravity_point_center = Vector2(-1, 0)
+gravity_direction = Vector2(-1, 0)
 w = 400
 h = 700
 
@@ -913,8 +915,8 @@ item = "Arrow"
 [node name="Wind" parent="Levels/AntiGravArrow" instance=ExtResource("4_4bpsl")]
 position = Vector2(1568, 242)
 rotation = -3.1415927
-gravity_point_center = Vector2(-1, 8.742278e-08)
-gravity_direction = Vector2(-1, 8.742278e-08)
+gravity_point_center = Vector2(-1, 0)
+gravity_direction = Vector2(-1, 0)
 w = 600
 
 [node name="PackOfFire" type="Node2D" parent="Levels/AntiGravArrow"]
@@ -1300,7 +1302,7 @@ position = Vector2(144, 10)
 [node name="HintArea" parent="Levels/AntiGravArrow" instance=ExtResource("11_2lrfy")]
 position = Vector2(1192, 234)
 scale = Vector2(-9.127437, -8.216641)
-hint = "Press Space to switch arrow types"
+hint = "Press Space to switch arrow types         Press 6 to cheat more in"
 
 [node name="AnimateIsland" parent="Levels" instance=ExtResource("4_ty7ck")]
 position = Vector2(13280, -168)
@@ -1567,7 +1569,7 @@ autoplay = "shake"
 position = Vector2(26200, -848)
 
 [node name="Env" type="TileMapLayer" parent="Levels/OffOn"]
-tile_map_data = PackedByteArray("AAD9/wIAAAABAAAAAAD+/wIAAAACAAAAAAD//wIAAAABAAAAAAAAAAIAAAACAAAAAAABAAIAAAADAAAAAAACAAIAAAAEAAAAAAADAAIAAAAFAAAAAAAEAAIAAAAGAAAAAAA=")
+tile_map_data = PackedByteArray("AAD9/wIAAAAFAAAAAAD+/wIAAAACAAAAAAD//wIAAAABAAAAAAAAAAIAAAACAAAAAAABAAIAAAADAAAAAAACAAIAAAAEAAAAAAADAAIAAAAFAAAAAAAEAAIAAAAGAAAAAAD5/wIAAAABAAAAAAD6/wIAAAACAAAAAAD7/wIAAAADAAAAAAD8/wIAAAAEAAAAAAD0/wIAAAABAAAAAAD1/wIAAAACAAAAAAD2/wIAAAADAAAAAAD3/wIAAAAEAAAAAAD4/wIAAAAFAAAAAADv/wIAAAABAAAAAADw/wIAAAACAAAAAADx/wIAAAADAAAAAADy/wIAAAAEAAAAAADz/wIAAAAFAAAAAAA=")
 tile_set = ExtResource("6_bhcbk")
 
 [node name="Target" parent="Levels/OffOn" instance=ExtResource("3_jpyr4")]
@@ -1826,14 +1828,18 @@ tile_set = ExtResource("6_bhcbk")
 [node name="Target" parent="Levels/-2" instance=ExtResource("3_jpyr4")]
 position = Vector2(16, 2224)
 
-[node name="Label" type="Label" parent="Levels/-2"]
-offset_left = -224.0
-offset_top = 1584.0
-offset_right = 432.0
-offset_bottom = 1787.0
-theme_override_font_sizes/font_size = 256
-text = "Too far..."
-horizontal_alignment = 1
+[node name="-3" parent="Levels" instance=ExtResource("4_ty7ck")]
+position = Vector2(73472, -1648)
+
+[node name="Env" type="TileMapLayer" parent="Levels/-3"]
+tile_map_data = PackedByteArray("AAD5/wUAAAADAAQAAAD6/wUAAAADAAQAAAD7/wUAAAADAAQAAAD8/wUAAAADAAQAAAD9/wUAAAADAAQAAAD+/wUAAAADAAQAAAD//wUAAAADAAQAAAAAAAUAAAADAAQAAAABAAUAAAADAAQAAAACAAUAAAADAAQAAAADAAUAAAADAAQAAAAEAAUAAAADAAQAAAAFAAUAAAADAAQAAAAGAAUAAAADAAQAAAAHAAUAAAADAAQAAAAIAAUAAAADAAQAAAAJAAUAAAADAAQAAAAKAAUAAAADAAQAAAALAAUAAAADAAQAAAAMAAUAAAADAAQAAAANAAUAAAADAAQAAAAOAAUAAAADAAQAAAAPAAUAAAADAAQAAAAQAAUAAAADAAQAAAARAAUAAAADAAQAAAASAAUAAAADAAQAAAATAAUAAAADAAQAAAAUAAUAAAADAAQAAAAVAAUAAAADAAQAAAAWAAUAAAADAAQAAAAXAAUAAAADAAQAAAAYAAUAAAADAAQAAAAZAAUAAAADAAQAAAAaAAUAAAADAAQAAAAbAAUAAAADAAQAAAAcAAUAAAADAAQAAAAdAAUAAAADAAQAAAAeAAUAAAADAAQAAAAfAAUAAAADAAQAAAAgAAUAAAADAAQAAAAhAAUAAAADAAQAAAD4/wUAAAADAAQAAAD3/wUAAAADAAQAAAD2/wUAAAADAAQAAAD1/wUAAAADAAQAAAD0/wUAAAADAAQAAADz/wUAAAADAAQAAADy/wUAAAADAAQAAADx/wUAAAADAAQAAADw/wUAAAADAAQAAADv/wUAAAADAAQAAADu/wUAAAADAAQAAADt/wUAAAADAAQAAADs/wUAAAADAAQAAADr/wUAAAADAAQAAADq/wUAAAADAAQAAAA=")
+tile_set = ExtResource("6_bhcbk")
+
+[node name="Target" parent="Levels/-3" instance=ExtResource("3_jpyr4")]
+position = Vector2(16, 2224)
+
+[node name="Bush" parent="Levels" instance=ExtResource("30_5aewc")]
+position = Vector2(73512, -1576)
 
 [node name="Levels0" type="Node2D" parent="."]
 position = Vector2(8, -6528)

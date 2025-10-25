@@ -1,23 +1,69 @@
-[gd_scene load_steps=12 format=3 uid="uid://ch6dhgj3k4iki"]
+[gd_scene load_steps=16 format=3 uid="uid://ch6dhgj3k4iki"]
 
 [ext_resource type="Script" uid="uid://ca0lad8xv0mif" path="res://Game/Player/bow/arrow/arrow.gd" id="1_aw2hv"]
 [ext_resource type="Shader" uid="uid://b3rwmkrcbnwfw" path="res://UI/shaders/pixel_outline.gdshader" id="2_2kp14"]
 [ext_resource type="Texture2D" uid="uid://clfc6orol40tt" path="res://Game/Player/bow/arrow/pixelArrow.png" id="3_6dvl8"]
+[ext_resource type="Texture2D" uid="uid://8jn5ck12rjmv" path="res://Game/Player/bow/arrow/Basic arrow.png" id="3_if8hr"]
+[ext_resource type="Texture2D" uid="uid://w1bshh8uqx48" path="res://Game/Player/bow/arrow/ghostly ghoul.png" id="4_1dvad"]
 [ext_resource type="Texture2D" uid="uid://5egvmd37rljr" path="res://icon.svg" id="4_yf8l1"]
 [ext_resource type="AudioStream" uid="uid://dvds06m4m4kow" path="res://Game/Player/bow/arrow/sfx/Anti-grav arrow.wav" id="5_2kp14"]
+[ext_resource type="Texture2D" uid="uid://bwkcvpd6t7dhg" path="res://Game/Player/bow/arrow/ROCKET (anti-grav).png" id="6_ul5dc"]
 [ext_resource type="AudioStream" uid="uid://dufcsbx6eqfhg" path="res://Game/Player/bow/arrow/sfx/ghostArrowSound.wav" id="6_yf8l1"]
 [ext_resource type="AudioStream" uid="uid://dvnon5fewkkuw" path="res://Game/Player/bow/arrow/sfx/arrow hit.wav" id="7_gup82"]
 [ext_resource type="AudioStream" uid="uid://unbpa4eaffs3" path="res://Game/Player/bow/arrow/sfx/arrowGoing.wav" id="8_gup82"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i17d8"]
 radius = 4.0
-height = 16.0
+height = 24.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vvof3"]
 shader = ExtResource("2_2kp14")
 shader_parameter/clr = Color(0, 0, 0, 1)
 shader_parameter/type = 1
 shader_parameter/thickness = 1.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a4y3l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_ul5dc")
+}],
+"loop": false,
+"name": &"antiGrav",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_if8hr")
+}],
+"loop": false,
+"name": &"basic",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_1dvad")
+}],
+"loop": false,
+"name": &"ghost",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_6dvl8")
+}],
+"loop": false,
+"name": &"impulse",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_6dvl8")
+}],
+"loop": false,
+"name": &"teleport",
+"speed": 0.0
+}]
 
 [sub_resource type="Gradient" id="Gradient_kdg8e"]
 offsets = PackedFloat32Array(0.020547945, 1)
@@ -34,15 +80,17 @@ max_contacts_reported = 1
 script = ExtResource("1_aw2hv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(8, 0)
+position = Vector2(12, 0)
 rotation = -1.5707964
 shape = SubResource("CapsuleShape2D_i17d8")
 
-[node name="Art" type="Sprite2D" parent="."]
+[node name="Art" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_vvof3")
-position = Vector2(8, 0)
+position = Vector2(12, 0)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_6dvl8")
+sprite_frames = SubResource("SpriteFrames_a4y3l")
+animation = &"basic"
+autoplay = "basic"
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 emitting = false

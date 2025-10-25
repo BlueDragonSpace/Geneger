@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b74p3aywoe3kr"]
 
 [ext_resource type="Script" uid="uid://b6sphm8disii6" path="res://Game/Env/target/target.gd" id="1_jyvkn"]
-[ext_resource type="Texture2D" uid="uid://5egvmd37rljr" path="res://icon.svg" id="2_vuv84"]
+[ext_resource type="Texture2D" uid="uid://b3gduvoin2clc" path="res://Game/Env/target/target.png" id="2_qmsjg"]
 [ext_resource type="AudioStream" uid="uid://cnlsufr1b2dve" path="res://Game/Env/target/target.wav" id="3_qmsjg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hmjml"]
@@ -15,9 +15,9 @@ gravity_direction = Vector2(0, 0)
 script = ExtResource("1_jyvkn")
 
 [node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(2.3841858e-07, -4)
-scale = Vector2(0.24999999, 0.062499996)
-texture = ExtResource("2_vuv84")
+position = Vector2(-1.7881393e-07, -3.9999998)
+scale = Vector2(0.9411764, 0.8)
+texture = ExtResource("2_qmsjg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -4)

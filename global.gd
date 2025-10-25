@@ -1,15 +1,19 @@
 extends Node
 
 # Things that need to be carried over, and the occasional debug function
-var arrow_type_num = 0 #type of arrow
 
+var dev_mode = true
+
+var arrow_type_num = 0 #type of arrow
+var checkpoint = 0 #level number the player is currently on
 var time: float = 0.0 #time in seconds (obvs)
+var speedrun_timer_visible = false
 
 var joypad = false #is using an external computer
 var joypad_deadzone = 0.1
 var joypad_right_stick = Vector2.ZERO #deadzoned coordinates
 
-var dev_mode = true
+
 
 func _ready() -> void:
 	

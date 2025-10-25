@@ -13,7 +13,10 @@ signal transitioning_out
 const UI_ARROW = preload("uid://ds8ha74oyja1o")
 const TYPE = preload("uid://fp8qbuv3sgpo") #arrow type
 
-var target_max : int = 99 #gets set by root_game
+var target_max : int = 99: #gets set by root_game
+	set(new):
+		target_max = new
+		$Theme/HUD/TargetTracker/Max.text = str(target_max)
 var current_targets = 0:
 	set(new):
 		current_targets = new
@@ -29,7 +32,7 @@ var current_targets = 0:
 		if Player: #makes sure the player exists, and therefore the game has started
 			Player.in_control = started
 			$Theme/Start.visible = not started
-			
+
 signal has_started 
 
 #usually animated...
@@ -52,8 +55,13 @@ func _ready() -> void:
 	#connect("Player.arrow_released", $Theme/Quiver.get_child(0).queue_free)
 	Player.arrow_released.connect(delete_quiver_arrow)
 	
-	$Theme/HUD/TargetTracker.visible = false
-	$Theme/HUD/SpeedrunTimer.visible = false
+	if Global.checkpoint != 0:
+		$Theme/HUD/TargetTracker.visible = true
+		$Theme/HUD/TargetTracker/Current.text = "0"
+		set_deferred("$Theme/HUD/TargetTracker/Max.text", str(target_max))
+	else:
+		$Theme/HUD/TargetTracker.visible = false
+	$Theme/HUD/SpeedrunTimer.visible = Global.speedrun_timer_visible
 	$Theme/Death.visible = true
 	$Theme/Pause.visible = false
 	
@@ -98,6 +106,9 @@ func _process(_delta: float) -> void:
 			get_tree().paused = true
 			$Theme/Pause.visible = true
 	
+	if Input.is_action_just_pressed("debug4") and Global.dev_mode and can_pause:
+		transition_in()
+	
 	# Speedrun Timer
 	if not started:
 		#now this... is what we call "cheating"
@@ -120,8 +131,10 @@ func _process(_delta: float) -> void:
 	#start game
 	if not started and Input.is_action_just_pressed("advance"):
 		Animate.play("start_in")
-
-	
+		
+	if Input.is_action_just_pressed("debug6"):
+		var child = TYPE.instantiate()
+		ArrowType.add_child(child)
 
 func add_arrow_type(sprite: Texture2D) -> void: #used by collectible class
 	var child = TYPE.instantiate()
@@ -154,3 +167,4 @@ func _on_quit_pressed() -> void:
 
 func _on_speedrun_button_pressed() -> void:
 	$Theme/HUD/SpeedrunTimer.visible = $Theme/Pause/SpeedrunButton.button_pressed
+	Global.speedrun_timer_visible = $Theme/HUD/SpeedrunTimer.visible

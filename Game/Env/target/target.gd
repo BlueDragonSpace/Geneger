@@ -11,7 +11,7 @@ func _on_body_entered(body: Node2D) -> void:
 	
 	if not is_hit:
 		is_hit = true
-		body.hit()
+		body.hit() #this function is terrible code.....
 		var child = NOTIF.instantiate()
 		add_child(child)
 		

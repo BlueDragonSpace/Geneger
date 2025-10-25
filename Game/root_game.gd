@@ -36,25 +36,24 @@ func _ready() -> void:
 	
 	$Player/Camera2D.reset_smoothing()
 	
+	if Global.checkpoint != 0:
+		call_deferred('next_level', Global.checkpoint)
 
-func _process(_delta: float) -> void:
-	
-	
-	if Input.is_action_just_pressed("debug4") and Global.dev_mode:
-		#throws an error if not dead, could be useful to force a break
-		UI.transition_in()
-
-func next_level() -> void:
+func next_level(selected_level = null) -> void:
+	if selected_level == null:
 		current_lvl += 1
-		
-		if lvl_index.size() <= current_lvl:
-			current_lvl = 0
-		
-		%Player.teleport(lvl_index[current_lvl][0])
-		$Player/Camera2D.position = Vector2(0,0) #teleports camera to player, to stop camera jerk to position
-		%Player.quiver = lvl_index[current_lvl][2]
-		
-		UI.target_max = lvl_index[current_lvl][1] #accesses amount of targets on this level
+	else:
+		current_lvl = selected_level
+	
+	if lvl_index.size() <= current_lvl:
+		current_lvl = 0
+	
+	%Player.teleport(lvl_index[current_lvl][0])
+	$Player/Camera2D.position = Vector2(0,0) #teleports camera to player, to stop camera jerk to position (doesn't work...)
+	%Player.quiver = lvl_index[current_lvl][2]
+	
+	UI.target_max = lvl_index[current_lvl][1] #accesses amount of targets on this level
+	Global.checkpoint = current_lvl
 
 #start game functions
 func start_rise() -> void:

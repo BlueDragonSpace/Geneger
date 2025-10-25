@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 @onready var Player = get_tree().get_first_node_in_group('Player')
+@onready var Art: AnimatedSprite2D = $Art
 
 #multiple inheritance, which messes up inheritance strings, but eh if it works it works (until it doesn't...)
 ##shared between all arrows
@@ -20,6 +21,8 @@ func _ready() -> void:
 			$TeleportCamera.enabled = true
 		_:
 			pass #there's already a sound for it on release in player
+	
+	Art.play(type) #theoretically should always match unless you screw up the system
 	
 	$Sound/ArrowGoing.play()
 

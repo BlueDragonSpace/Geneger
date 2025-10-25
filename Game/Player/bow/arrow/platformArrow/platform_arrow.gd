@@ -14,8 +14,14 @@ func _ready() -> void:
 	$CollisionShape2D.shape.size.x = platform_width
 
 func _on_right_end_body_entered(_body: Node2D) -> void:
-	#strange_velocity = Vector2.ZERO #time to stop moving, hit something on the right
+	strange_velocity = Vector2.ZERO #time to stop moving, hit something on the right
 	pass
+
+func hit() -> void:
+	pass
+
+func start_death(speed) -> void:
+	$AnimationPlayer.play('death',-1, speed)
 
 func _physics_process(delta: float) -> void:
 	position += strange_velocity * delta
